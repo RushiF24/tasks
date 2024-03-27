@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- <style>
+     input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+        width: 100%;
+        margin-bottom: 15px;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    button[type="submit"] {
+        padding: 15px;
+        border-radius: 10px;
+        border: none;
+        /* background-color: #4caf50; */
+        color: black;
+        cursor: pointer;
+        width: 100%;
+        font-size: 16px;
+    }
+</style> -->
+
+<body>
+
+    <h1>Email</h1>
+
+    <form action="/forgotpassword/verify_forgot_password" method="post" >
+
+            <input type="hidden" name="id" id="" value="">
+            <p style="color: red;" id="err"></p>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="email">Email</label>
+                  <input type="email"  name="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</body>
+<script>
+    try{
+        let err = '<%=err%>'
+        document.getElementById('err').innerHTML = err
+    }
+    catch(error){
+
+    }
+</script>
+
+</html>

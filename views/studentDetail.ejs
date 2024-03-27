@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Detail</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black; 
+            background-color: skyblue;
+        }
+        td{
+            padding: 12px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <table id="tableId">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Phone number</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Hobbies</th>
+                <th>Address</th>
+            </tr>
+            <tr>
+                <td>
+                    <%=data[0].firstname%>
+                </td>
+                <td>
+                        <%=data[0].lastname%>
+                    </td>
+                    <td>
+                        <%=data[0].age%>
+                    </td>
+                    <td>
+                        <%=data[0].number%>
+                    </td>
+                    <td>
+                        <%=data[0].email%>
+                    </td>
+                    <td>
+                        <%=data[0].gender%>
+                    </td>
+                    <td>
+                        <%=data[0].Hobbies%>
+                    </td>
+                    <td>
+                        <%=data[0].address%>
+                    </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

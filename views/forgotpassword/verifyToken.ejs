@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Token Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  
+        <input type="hidden" name="email" id="email" value="<%=email%>">
+<span id="token"></span>
+
+</body>
+<script>
+
+    try {
+        let email = '<%=email%>'
+        console.log(email);
+            fetch(`http://localhost:3000/activation_code`, {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({email}),
+            })  
+            .then((response)=> {
+                return response.json()
+            }).then((data)=>{
+                console.log(data.activation_code,email);
+                console.log(`<a href='/forgotpassword/verifyUser?email=${email}&activation_code=${data.activation_code}>Verify User</a>`);
+                document.getElementById('token').innerHTML = `<a href='/forgotpassword/verifyUser?email=${email}&verifycode=${data.activation_code}'>Verify User</a>`
+            })
+
+    } catch (error) {
+
+    }
+
+</script>
+
+</html>

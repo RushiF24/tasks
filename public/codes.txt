@@ -1,0 +1,198 @@
+let check_all_fill_or_not = document.querySelectorAll('.check-all-fill-or-not')
+    let check_all_fill = 0
+
+    for (let i = 0; i < check_all_fill_or_not.length; i++) {
+        // console.log("field_required[i].value:" + check_all_fill_or_not[i].value + ":" + i);
+        if (check_all_fill_or_not[i].value == "") {
+            if (check_all_fill == 1) {
+                check_all_fill = 2
+                break;
+            }
+            check_all_fill = 3
+        } else if (!check_all_fill_or_not[i].value == "") {
+            if (check_all_fill == 3) {
+                check_all_fill = 2
+                break;
+            }
+            check_all_fill = 1
+        }
+
+    }
+
+    if (check_all_fill == 2) {
+        document.getElementById('check-all-fill-or-not').innerHTML = "either you fill all field or empty all field"
+        document.getElementById('check-all-fill-or-not').style.color = "red"
+    }
+
+
+    //check-all-fill-or-not-work
+    let check_all_fill_or_not_work = document.querySelectorAll('.check-all-fill-or-not-work')
+    let check_all_fill_work = 0
+
+    for (let i = 0; i < check_all_fill_or_not_work.length; i++) {
+        if (check_all_fill_or_not_work[i].value == "") {
+            if (check_all_fill_work == 1) {
+                check_all_fill_work = 2
+                break;
+            }
+            check_all_fill_work = 3
+        } else if (!check_all_fill_or_not_work[i].value == "") {
+            if (check_all_fill_work == 3) {
+                check_all_fill_work = 2
+                break;
+            }
+            check_all_fill_work = 1
+        }
+
+
+    }
+    if (check_all_fill_work == 2) {
+        // console.log("work exper:");
+        document.getElementById('check-all-fill-or-not-work').innerHTML = "either you fill all field or empty all field"
+        document.getElementById('check-all-fill-or-not-work').style.color = "red"
+    }
+
+    //check-all-fill-or-not-Referance
+    let check_all_fill_or_not_Referance = document.querySelectorAll('.check-all-fill-or-not-Referance')
+    let check_all_fill_Referance = 0
+
+    for (let i = 0; i < check_all_fill_or_not_Referance.length; i++) {
+        if (check_all_fill_or_not_Referance[i].value == "") {
+            if (check_all_fill_Referance == 1) {
+                check_all_fill_Referance = 2
+                break;
+            }
+            check_all_fill_Referance = 3
+        } else if (!check_all_fill_or_not_Referance[i].value == "") {
+            if (check_all_fill_Referance == 3) {
+                check_all_fill_Referance = 2
+                break;
+            }
+            check_all_fill_Referance = 1
+        }
+
+
+    }
+    if (check_all_fill_Referance == 2) {
+        document.getElementById('check-all-fill-or-not-Referance').innerHTML = "either you fill all field or empty all field"
+        document.getElementById('check-all-fill-or-not-Referance').style.color = "red"
+    }
+
+
+    //combo box validation
+
+    let array = ['hindi', 'english', 'gujarat']
+
+    for (let arr in array) {
+
+
+        var combo_box = document.querySelectorAll('.'+array[arr]);
+        let check_combo_value_is_filled = ""
+
+        console.log("combo_box:" + JSON.stringify(combo_box));
+
+        for (let i = 1; i < combo_box.length; i++) {
+            let Langcheckbox = document.getElementById(combo_box[0].id);
+
+            if (Langcheckbox.checked) {
+                let checkbox = document.getElementById(combo_box[i].id);
+                if (!checkbox.checked) {
+                    check_combo_value_is_filled = "error"
+
+                } else {
+                    check_combo_value_is_filled = 1
+                    break
+                }
+            }
+            if (!Langcheckbox.checked) {
+                let checkbox = document.getElementById(combo_box[i].id);
+                if (checkbox.checked) {
+                    check_combo_value_is_filled = "error"
+                    break
+
+                } else {
+                    check_combo_value_is_filled = 0
+                }
+            }
+        }
+
+        if (check_combo_value_is_filled == "error") {
+            document.getElementById('check-all-fill-or-not-'+array[arr]).innerHTML = "you are not proper selected any check box"
+            document.getElementById('check-all-fill-or-not-'+array[arr]).style.color = "red"
+
+        }
+    }
+
+
+    let array_tech = ['php', 'mysql', 'laravel','oracle']
+
+    for(let arr in array_tech){
+        var combo_box = document.querySelectorAll('.'+array_tech[arr]);
+        let check_combo_value_is_filled = ""
+
+
+        for (let i = 1; i < combo_box.length; i++) {
+            let techcheckbox = document.getElementById(combo_box[0].id);
+            if (techcheckbox.checked) {
+                let radio = document.getElementById(combo_box[i].id);
+                if (!radio.checked) {
+                    check_combo_value_is_filled = "error"
+
+                } else {
+                    check_combo_value_is_filled = 1
+                    break
+                }
+            }
+            if (!techcheckbox.checked) {
+                let radio = document.getElementById(combo_box[i].id);
+                if (radio.checked) {
+                    check_combo_value_is_filled = "error"
+
+                    break
+
+                } else {
+                    check_combo_value_is_filled = 0
+                }
+            }
+
+        }
+
+        if (check_combo_value_is_filled == "error") {
+            document.getElementById('check-all-fill-or-not-'+array_tech[arr]).innerHTML = "you are not proper selected any check box"
+            document.getElementById('check-all-fill-or-not-'+array_tech[arr]).style.color = "red"
+
+        }
+    }
+
+
+    return false;
+}
+
+
+
+
+
+
+function myFunctionworkExperience() {
+    const node = document.getElementById("workExperience-child");
+    const clone = node.cloneNode(true);
+    document.getElementById("workExperience").appendChild(clone);
+}
+
+function myFunctionReferance() {
+    const node = document.getElementById("Referance-chlid");
+    const clone = node.cloneNode(true);
+    document.getElementById("Referance").appendChild(clone);
+
+}
+
+
+
+
+    const validate_percentage = (pr, name) => {
+        console.log(name);
+       let Percentage1Regex = /^( 100(?:\.0{1,2})? | 0*?\.\d{1,2} | \d{1,2}(?:\.\d{1,2})? )% $/
+        if (!Percentage1Regex.test(pr)) {
+            document.getElementById('error-' + name).innerHTML = "percentage is invalid"
+        }
+    }

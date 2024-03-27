@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+</head>
+<style>
+    h1,
+    h3 {
+        text-align: center;
+    }
+
+    .err-red {
+        color: red;
+        
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+    .prev,.next{
+        border: 1px solid rgb(158, 155, 155);
+        padding: 10px;
+        border-radius: 10px;
+        background-color: rgb(189, 185, 185);
+        cursor: pointer;
+        margin: 5px;
+    }
+</style>
+
+<body>
+
+
+<h1>Rushikesh - (24DEV059)</h1>
+
+
+    <h1>Success Page</h1>
+
+        <h3>Final Form</h3>
+    <form action="<%=data?'/updateCandidate':'/addCandidate'%>" method="post" onsubmit="return validation()">
+
+        <!-- basic details -->
+        <fieldset class="fieldsets" id="basic_details">
+            <legend>
+                <h2>Basic
+                    Details
+                </h2>
+            </legend>
+           
+
+            <label for="firstname">First
+                Name:
+            </label>
+                <input type="text" name="firstname" class="required basic_details" id="firstname"
+                    value="<%=basic_details!=''?basic_details.first_name:''%>">
+                <span class="errors err-red" id="error-firstname"></span>
+
+
+                <label for="lastName">Last
+                    Name:
+                </label>
+                <input type="text" name="lastname" class="required basic_details" id="lastname"
+                    value="<%=basic_details!=''?basic_details.last_name:''%>">
+                <span class="errors err-red" id="error-lastname"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="designation">Designation:
+                </label>
+                <input type="text" name="designation" class="required basic_details" id="designation"
+                    value="<%=basic_details!=''?basic_details.designation:''%>">
+                <span class="errors err-red" id="error-designation"></span>
+
+
+                <label for="email">Email:
+                </label>
+                <input type="text" name="email" id="email" class="required basic_details" value="<%=basic_details!=''?basic_details.email:''%>">
+                <span class="errors err-red" id="error-email"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="address1">Address1:
+                </label>
+                <textarea name="address" id="address" cols="30" rows="5"
+                    class="required basic_details"><%=basic_details!=''?basic_details.address1:''%></textarea>
+                <span class="errors err-red" id="error-address"></span>
+
+                <label for="address2">Address2:
+                </label>
+                <textarea name="address2" id="address2" cols="30" class="basic_details"
+                    rows="5"><%=basic_details!=''?basic_details.address2:''%></textarea>
+                <span class="errors err-red" id="error-address2"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="phone number">Phone
+                    Number:
+                </label>
+                <input type="text" name="phoneNumber" id="phoneNumber" class="required basic_details"
+                    value="<%=basic_details!=''?basic_details.phone_number:''%>">
+                <span class="errors err-red" id="error-phoneNumber"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="state">State:</label>
+                <select name="state" class="required basic_details" id="state" onchange="loadCity()">
+                    <option value="<%=basic_details!=''?basic_details.state:''%>" hidden checked>
+                        <%=basic_details!=''?basic_details.state:'--select state'%>
+                    </option>
+                    <option value=23 class="check">
+                        Gujarat
+                    </option>
+                    <option value=24 class="check">
+                        Maharashtra
+                    </option>
+                    <option value=25 class="check">
+                     Rajsthan
+                    </option>
+                </select>
+                <span class="errors err-red" id="error-state"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                 <label for="city">City:
+                </label>
+                <select name="city" id="city" class="required">
+                    <option value="<%=basic_details!=''?basic_details.city:''%>" hidden checked>
+                        <%=basic_details!=''?basic_details.city:'--select city'%>
+                    </option>
+                   
+                </select>
+                <input type="text" name="city" id="city" class="required basic_details"
+                    value="<%=basic_details!=''?basic_details.city:''%>">
+                <span class="errors err-red" id="error-city"></span>
+
+                <br>
+                &emsp;
+                <br>
+                <label for="gender">Gender:</label>
+                <input type="radio" name="gender" id="male" value="male" class="basic_details" <%=basic_details!=''?((basic_details.gender=='male'
+                    )? 'checked' :''):'' %>>
+                <label for="male">Male</label>
+                <input type="radio" name="gender" id="female" value="female" class="basic_details" <%=basic_details!=''?((basic_details.gender=='female'
+                    )? 'checked' :''):'' %>>
+                <label for="female">Female</label>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="relationship">RelationShip
+                    Status:</label>
+                <select name="relationship" class="required basic_details" id="relation">
+                    <option value="<%=basic_details!=''?basic_details.relation_ship_status:''%>" hidden checked>
+                        <%=basic_details? basic_details.relation_ship_status:'--select relationship'%>
+                    </option>
+                    <option value="single" class="check">
+                        Single
+                    </option>
+                    <option value="married" class="check">
+                        Married
+                    </option>
+                </select> 
+                <span class="errors err-red" id="error-relationship"></span>
+
+                <br> 
+                &emsp;
+                <br>
+
+                <label for="zipcode">Zip
+                    Code:</label>
+                <input type="text" id="zip_code" name="zip_code" class="required basic_details"
+                    value="<%=basic_details!=''? basic_details.zipcode:''%>">
+                <span class="errors err-red" id="error-zip_code"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="dob">DOB:</label>
+                <input type="text" id="dob" name="dob" class="required date basic_details" placeholder="YYYY-MM-DD"
+                    value="<%=basic_details!=''? (new Date(basic_details.dob)).toISOString().split('T')[0]:''%>">
+                <span class="errors err-red" id="error-dob"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <span class="next">Next</span>
+        </fieldset>
+        <!-- educational_detail -->
+        <fieldset class="fieldsets" id="education" style="display: none;">
+            <legend>
+                <h2>Educational
+                    Details
+                </h2>
+            </legend>
+            <!-- <span onclick="myFunctionEducation()" class="pointer">+</span> -->
+            <span onclick="addField('eparent','echild')" class="pointer">+</span>
+            <span onclick="deleteField('eparent','echild')" class="pointer">-</span>
+            <span id="check-all-fill-or-not-eduDetail" class="errors"></span>
+
+            <div id="eparent">
+
+                <div id="echild">
+                    <input type="hidden" id="edu_id" class="education" name="edu_id[]" value="<%=educational_detail!=''?educational_detail[0].id:''%>">
+                    <label for="courseName">Course
+                        Name:</label>
+                    <select name="courseName[]" class="education" id="courseName">
+                        <option value="<%=educational_detail!=''?educational_detail[0].course_name:''%>" hidden checked>
+                            <%=educational_detail!=''?educational_detail[0].course_name:'--select board'%>
+                        </option>
+                        <option value="hsc" class="check">
+                            HSC
+                        </option>
+                        <option value="ssc" class="check">
+                            SSC
+                        </option>
+                        <option value="bachelor" class="check">
+                            Bachelor
+                        </option>
+                        <option value="master" class="check">
+                            Master
+                        </option>
+                    </select>
+                    <span class="errors err-red" id="error-courseName"></span>
+
+                    <label for="PassigYear">Passing
+                        Year:
+                    </label>
+                    <input type="text" name="PassigYear[]" class="check-all-fill-or-not-eduDetail education" id="passingYear"
+                        value="<%=educational_detail!=''?educational_detail[0].passing_year:''%>">
+                    <span class="errors err-red" id="error-PassigYear"></span>
+
+                    <label for="Percentage">Percentage:
+                    </label>
+                    <input type="text" name="Percentage[]" id="percentage"
+                        class="percentage check-all-fill-or-not-eduDetail education" placeholder="80.00"
+                        value="<%=educational_detail!=''?educational_detail[0].percentage:''%>">
+                    <span class="errors err-red" id="error-percentage"></span>
+                </div>
+                <div id="echild">
+                    <input type="hidden" name="edu_id[]" id="edu_id" class="education" value="<%=educational_detail!=''?educational_detail[1].id:''%>">
+                    <label for="courseName">Course
+                        Name:</label>
+                    <select name="courseName[]" class="education" id="courseName">
+                        <option value="<%=educational_detail!=''?educational_detail[1].course_name:''%>" hidden checked>
+                            <%=educational_detail!=''?educational_detail[1].course_name:'--select board'%>
+                        </option>
+                        <option value="ssc" class="check">
+                            SSC
+                        </option>
+                        <option value="hsc" class="check">
+                            HSC
+                        </option>
+                        <option value="bachelor" class="check">
+                            Bachelor
+                        </option>
+                        <option value="master" class="check">
+                            Master
+                        </option>
+                    </select>
+                    <span class="errors err-red" id="error-courseName"></span>
+
+                    <label for="PassigYear">Passing
+                        Year:
+                    </label>
+                    <input type="text" name="PassigYear[]" class="check-all-fill-or-not-eduDetail education" id="passingYear"
+                        value="<%=educational_detail!=''?educational_detail[1].passing_year:''%>">
+                    <span class="errors err-red" id="error-PassigYear"></span>
+
+                    <label for="Percentage">Percentage:
+                    </label>
+                    <input type="text" name="Percentage[]" id="percentage"
+                        class="percentage check-all-fill-or-not-eduDetail education" placeholder="80.00"
+                        value="<%=educational_detail!=''?educational_detail[1].percentage:''%>">
+                    <span class="errors err-red" id="error-percentage"></span>
+                </div>
+                <div id="echild">
+                    <input type="hidden" name="edu_id[]" id="edu_id" class="education" value="<%=educational_detail!=''?educational_detail[2].id:''%>">
+                    <label for="courseName">Course
+                        Name:</label>
+                    <select name="courseName[]" class="education" id="courseName">
+                        <option value="<%=educational_detail!=''?educational_detail[2].course_name:''%>" hidden checked>
+                            <%=educational_detail!=''?educational_detail[2].course_name:'--select board'%>
+                        </option>
+                        <option value="ssc" class="check">
+                            SSC
+                        </option>
+                        <option value="hsc" class="check">
+                            HSC
+                        </option>
+                        <option value="bachelor" class="check">
+                            Bachelor
+                        </option>
+                        <option value="master" class="check">
+                            Master
+                        </option>
+                    </select>
+                    <span class="errors err-red" id="error-courseName"></span>
+
+                    <label for="PassigYear">Passing
+                        Year:
+                    </label>
+                    <input type="text" name="PassigYear[]" class="check-all-fill-or-not-eduDetail education" id="passingYear"
+                        value="<%=educational_detail!=''?educational_detail[2].passing_year:''%>">
+                    <span class="errors err-red" id="error-PassigYear"></span>
+
+                    <label for="Percentage">Percentage:
+                    </label>
+                    <input type="text" name="Percentage[]" id="percentage"
+                        class="percentage check-all-fill-or-not-eduDetail education" placeholder="80.00"
+                        value="<%=educational_detail!=''?educational_detail[2].percentage:''%>">
+                    <span class="errors err-red" id="error-percentage"></span>
+                </div>
+            </div>
+
+            <br>
+            &emsp;
+            <br>
+            <span class="prev">prev</span>
+            <span class="next">Next</span>
+        </fieldset>
+
+        <!-- work Experience -->
+        <fieldset class="fieldsets" id="work_experience" style="display: none;">
+            <legend>
+                <h2>Work
+                    Experience
+                </h2>
+            </legend>
+            <span onclick="addField('we','wchild')" class="pointer">+</span>
+            <span onclick="deleteField('we','wchild')" class="pointer">-</span>
+
+            <!-- <span onclick="myFunctionworkExperience()" class="pointer">+</span> -->
+            <span id="check-all-fill-or-not-workExp" class="errors"></span>
+            <%if(workExp){workExp.map((wexp)=>{ %>
+
+                <div id="we">
+                    <div id="wchild">
+                        <input type="hidden" id="exp_id" class="work_experience" name="exp_id[]" value=<%=wexp.id%>>
+                        <label for="cname">Company Name:</label>
+                        <%=wexp.id%>
+                        <input type="text" name="cname[]" class="check-all-fill-or-not-workExp work_experience"
+                            value="<%=wexp.company_name%>">
+                        <span class="errors err-red" id="error-cname"></span>
+                        &ensp;
+                        <label for="cdesignation">Designation:
+                        </label>
+                        <input type="text" id="cdesignation" name="cdesignation[]" class="check-all-fill-or-not-workExp work_experience"
+                            value="<%=wexp.designation%>">
+                        <span class="errors err-red" id="error-cdesignation"></span>
+
+                        &ensp;
+                        <label for="cfrom1">From:</label>
+                        <input type="text" id="cfrom1" name="cfrom1[]" class="date check-all-fill-or-not-workExp work_experience"
+                            placeholder="YYYY-MM-DD" value="<%=(new Date(wexp.from_1)).toISOString().split('T')[0]%>">
+                        <span class="errors err-red" id="error-cfrom1"></span>
+
+                        <label for="cto1">To:</label>
+                        <input type="text" id="cto1" name="cto1[]" class="date check-all-fill-or-not-workExp work_experience"
+                            placeholder="YYYY-MM-DD" value="<%=(new Date(wexp.to_1)).toISOString().split('T')[0]%>">
+                        <span class="errors err-red" id="error-cto1"></span>
+                    </div>
+
+                </div>
+                <% })}else{%>
+                    <div id="we">
+                        <div id="wchild">
+                            <label for="cname">Company
+                                Name:
+                            </label>
+                            <input type="text" name="cname[]" id="cname" class="check-all-fill-or-not-workExp work_experience"  value="">
+                            <span class="errors err-red" id="error-cname"></span>
+                            &ensp;
+                            <label for="cdesignation">Designation:
+                            </label>
+                            <input type="text" name="cdesignation[]" id="cdesignation" class="check-all-fill-or-not-workExp work_experience" value="">
+                            <span class="errors err-red" id="error-cdesignation"></span>
+
+                            &ensp;
+                            <label for="cfrom1">From:</label>
+                            <input type="text" id="cfrom1" name="cfrom1[]" id="cfrom1" class="date check-all-fill-or-not-workExp work_experience"
+                                placeholder="YYYY-MM-DD" value="">
+                            <span class="errors err-red" id="error-cfrom1"></span>
+
+                            <label for="cto1">To:</label>
+                            <input type="text" id="cto1" name="cto1[]"id="cto1" class="date check-all-fill-or-not-workExp work_experience"
+                                placeholder="YYYY-MM-DD" value="">
+                            <span class="errors err-red" id="error-cto1"></span>
+                        </div>
+
+                    </div>
+                    <%}%>
+
+                        <br>
+                        &emsp;
+                        <br>
+                        <span class="prev">prev</span>
+                        <span class="next">Next</span>
+        </fieldset>
+
+        <!-- language known -->
+        <fieldset class="fieldsets" id="language_known" style="display: none;">
+            <legend>
+                <h2>Language
+                    Known
+                </h2>
+                <span class="errors err-red" id="error-lang"></span>
+            </legend>
+            <input type="checkbox" id="hindi" name="language[]" value="hindi" class="langMainCheck hindi language_known"
+                onclick="enDisFields('h')">
+            <label for="hindi">
+                Hindi</label>
+            <input type="checkbox" id="read" name="hindi[]" value="read" class="sub-hfield hindi" disabled>
+            <label for="read">
+                read</label>
+            <input type="checkbox" id="write" name="hindi[]" value="write" class="sub-hfield hindi" disabled>
+            <label for="write">
+                write</label>
+            <input type="checkbox" id="speak" name="hindi[]" value="speak" class="sub-hfield hindi" disabled>
+            <label for="speak">
+                speak</label>
+
+
+            <br>
+            &emsp;
+            <br>
+
+            <input type="checkbox" id="gujarati" name="language[]" value="gujarati" class="gujarati langMainCheck language_known"
+                onclick="enDisFields('g')">
+            <label for="gujarati">
+                Gujarati</label>
+            <input type="checkbox" id="read" name="gujarati[]" value="read" class="sub-gfield gujarati" disabled>
+            <label for="read">
+                read</label>
+            <input type="checkbox" id="write" name="gujarati[]" value="write" class="sub-gfield gujarati" disabled>
+            <label for="write">
+                write</label>
+            <input type="checkbox" id="speak" name="gujarati[]" value="speak" class="sub-gfield gujarati" disabled>
+            <label for="speak">
+                speak</label>
+
+            <br>
+            &emsp;
+            <br>
+
+
+            <input type="checkbox" id="english" name="language[]" value="english" class="english langMainCheck language_known"
+                onclick="enDisFields('e')">
+            <label for="english">
+                English</label>
+            <input type="checkbox" id="read" name="english[]" value="read" class="sub-efield english" disabled>
+            <label for="read">
+                read</label>
+            <input type="checkbox" id="write" name="english[]" value="write" class="sub-efield english" disabled>
+            <label for="write">
+                write</label>
+            <input type="checkbox" id="speak" name="english[]" value="speak" class="sub-efield english" disabled>
+            <label for="speak">
+                speak</label>
+
+            <br>
+            &emsp;
+            <br>
+            <span class="errors err-red" id="error-sublang"></span>
+            <span class="prev">prev</span>
+            <span class="next">Next</span>
+        </fieldset>
+
+        <!-- tech known -->
+        <fieldset class="fieldsets" id="tech_known" style="display: none;">
+            <legend>
+                <h2>Technologies
+                    You
+                    Know
+                </h2>
+                <span class="errors err-red" id="error-tech"></span>
+            </legend>
+            <input type="checkbox" id="php" name="tech[]" id="php" value="php" class="techMainCheck php tech_known"
+                onclick="enDisFields('p')">
+            <label for="php">
+                Php</label>
+
+            <input type="radio" id="begineer" name="php[]" value="begineer" class="sub-pfield php" disabled>
+            <label for="begineer">Begineer</label>
+            <input type="radio" id="mideator" name="php[]" value="mideator" class="sub-pfield php" disabled>
+            <label for="mideator">Mideator</label>
+            <input type="radio" id="expert" name="php[]" value="expert" class="sub-pfield php" disabled>
+            <label for="expert">Expert</label>
+
+            <br>
+            &emsp;
+            <br>
+
+            <input type="checkbox" id="mysql" name="tech[]" id="mysql" value="mysql" class="techMainCheck mysql tech_known"
+                onclick="enDisFields('m')">
+            <label for="mysql">
+                Mysql</label>
+
+            <input type="radio" id="begineer" name="mysql[]" value="begineer" class="sub-mfield mysql" disabled>
+            <label for="begineer">Begineer</label>
+            <input type="radio" id="mideator" name="mysql[]" value="mideator" class="sub-mfield mysql" disabled>
+            <label for="mideator">Mideator</label>
+            <input type="radio" id="expert" name="mysql[]" value="expert" class="sub-mfield mysql" disabled>
+            <label for="expert">Expert</label>
+
+            <br>
+            &emsp;
+            <br>
+
+            <input type="checkbox" id="laravel" name="tech[]" id="laravel" value="laravel" class="techMainCheck laravel tech_known"
+                onclick="enDisFields('l')">
+            <label for="laravel">
+                Laravel</label>
+
+            <input type="radio" id="begineer" name="laravel[]" value="begineer" class="sub-lfield laravel" disabled>
+            <label for="begineer">Begineer</label>
+            <input type="radio" id="mideator" name="laravel[]" value="mideator" class="sub-lfield laravel" disabled>
+            <label for="mideator">Mideator</label>
+            <input type="radio" id="expert" name="laravel[]" value="expert" class="sub-lfield laravel" disabled>
+            <label for="expert">Expert</label>
+
+            <br>
+            &emsp;
+            <br>
+
+            <input type="checkbox" id="oracle" name="tech[]" id="oracle" value="oracle" class="techMainCheck oracle tech_known"
+                onclick="enDisFields('o')">
+            <label for="oracle">
+                Oracle</label>
+
+            <input type="radio" id="begineer" name="oracle[]" value="begineer" class="sub-ofield oracle" disabled>
+            <label for="begineer">Begineer</label>
+            <input type="radio" id="mideator" name="oracle[]" value="mideator" class="sub-ofield oracle" disabled>
+            <label for="mideator">Mideator</label>
+            <input type="radio" id="expert" name="oracle[]" value="expert" class="sub-ofield oracle" disabled>
+            <label for="expert">Expert</label>
+
+            <br>
+            &emsp;
+            <br>
+            <span class="errors err-red" id="error-subtech"></span>
+            <span class="prev">prev</span>
+            <span class="next">Nex  t</span>
+        </fieldset>
+
+        <!-- refrence contact -->
+        <fieldset class="fieldsets" id="referance_contact" style="display: none;">
+            <legend>
+                <h2>Referance
+                    contact
+                </h2>
+            </legend>
+
+            <span onclick="addField('r','rchild')" class="pointer">+</span>
+            <span onclick="deleteField('r','rchild')" class="pointer">-</span>
+            <!-- <div onclick="myFunctionReferance()" class="pointer">+</div> -->
+            <span id="check-all-fill-or-not-refrence" class="errors"></span>
+            <%if(referance){referance.map((ref)=>
+                { %>
+
+                <div id="r">
+                    <div id="rchild">
+                        <br>
+                        <input type="hidden" id="ref_id" class="referance_contact name="ref_id[]" value="<%=ref.id%>" >
+                        <label for="rname">Name:
+                        </label>
+                        <input type="text" name="rname[]" id="rname" class="check-all-fill-or-not-refrence referance_contact" value="<%=ref.name%>">
+
+
+                        <label for="contact">Contact
+                            Number:
+                        </label>
+                        <input type="text" id="contact" name="contact[]" class="check-all-fill-or-not-refrence referance_contact"
+                            value="<%=ref.contact_number%>">
+
+
+                        <label for="relation">Relation:
+                        </label>
+                        <input type="text" id="relation name="relation[]" class="check-all-fill-or-not-refrence referance_contact"
+                            value="<%=ref.relation%>">
+                    </div>
+                </div>
+                <% })}else{%>
+                    <div id="r">
+                        <div id="rchild">
+                            <br>
+                            <label for="rname">Name:
+                            </label>
+                            <input type="text" name="rname[]" id="rname" class="check-all-fill-or-not-refrence referance_contact" value="">
+
+
+                            <label for="contact">Contact
+                                Number:
+                            </label>
+                            <input type="text" name="contact[]" id="contact" class="check-all-fill-or-not-refrence referance_contact" value="">
+
+
+                            <label for="relation">Relation:
+                            </label>
+                            <input type="text" name="relation[]" id="relation" class="check-all-fill-or-not-refrence referance_contact" value="">
+                        </div>
+                    </div>
+
+                    <%}%>
+
+                        <br>
+                        &emsp;
+                        <br>
+                        <span class="prev">prev</span>
+                        <span class="next">Next</span>
+
+        </fieldset>
+
+         <!-- Preferances -->
+        <fieldset class="fieldsets" id="preferances" style="display: none;">
+            <legend>
+                <h2>Preferances
+                </h2>
+            </legend>
+                <label for="location">Prefered
+                    location:</label>
+                <select name="location" class="preferances" id="location">
+                    <option value="" hidden checked="">
+                        <%=preferances?preferances[0].prefered_location:'--select location'%>
+                    </option>
+                    <option value="ahmedabad" class="check">
+                        Ahmedabad
+                    </option>
+                    <option value="vadodara" class="check">
+                        Vadodara
+                    </option>
+                    <option value="surat" class="check">
+                        Surat
+                    </option>
+                    <option value="rajkot" class="check">
+                        Rajkot
+                    </option>
+                </select>
+
+                <br>
+                &emsp;
+                <br>
+
+
+
+                <label for="noticePeriod">Notice
+                    period:
+                </label>
+                <input type="text" name="noticePeriod" id="noticePeriod" class="preferances" placeholder="2(in months)"
+                    value="<%=preferances?preferances[0].notice_period:''%>">
+                <span class="errors err-red" id="error-noticePeriod"></span>
+
+
+                <label for="expectedCtc">Expected
+                    CTC:
+                </label>
+                <input type="text" name="expectedCtc" id="expectedCtc" class="preferances" placeholder="12(in LPA)"
+                    value="<%=preferances?preferances[0].expacted_ctc:''%>">
+                <span class="errors err-red" id="error-expectedCtc"></span>
+
+                <label for="currentCtc">Current
+                    CTC:
+                </label>
+                <input type="text" name="currentCtc" id="currentCtc" class="preferances" placeholder="12(in LPA)"
+                    value="<%=preferances?preferances[0].current_ctc:''%>">
+                <span class="errors err-red" id="error-currentCtc"></span>
+
+                <br>
+                &emsp;
+                <br>
+
+                <label for="department">Department:</label>
+                <select name="department" id="department" class="preferances">
+                    <option value="" hidden checked="">
+                        <%=preferances?preferances[0].department:'--select department'%>
+                    </option>
+                    <option value="development" class="check">
+                        Development
+                    </option>
+                    <option value="design" class="check">
+                        Design
+                    </option>
+                    <option value="marketing" class="check">
+                        Marketing
+                    </option>
+                </select>
+                <span class="prev">prev</span>
+                <span onclick="save(mode)">Save</span>
+        </fieldset>
+
+        <!-- <input type="submit" value="submit"> -->
+
+    </form>
+</body>
+<script>
+
+    function loadCity() {
+        let stateId = document.getElementById("state");
+        let cityId = document.getElementById("city")
+        cityId.innerHTML = ""
+
+        let ajax = fetch(`http://localhost:3000/getcity?stateId=${stateId.value}`, {
+            method: "GET",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            // body data type must match "Content-Type" header
+        }).then((response) => response.json()).then((data) => {
+          data = data.data;
+            for(let i=0;i<data.length;i++){
+                var opt = document.createElement("option");
+                opt.value = data[i].id;
+                opt.text = data[i].city_name; 
+                cityId.options.add(opt)
+                console.log(opt);
+            }
+        });
+    }
+
+    let mode = '<%-JSON.stringify(mode)%>';
+    console.log('vc',mode);
+    let cid = ""
+
+    let fieldSets = document.querySelectorAll('.fieldsets')
+    let nextBtns = document.querySelectorAll('.next')
+    let prevBtns = document.querySelectorAll('.prev')
+    console.log(fieldSets);
+
+    if(mode == '"update"'){
+        cid=prompt('enter a id')
+    }
+    
+    
+
+    nextBtns.forEach((button,index)=>{
+        console.log('mod is ',mode);
+        button.addEventListener("click", function () {
+            fieldSets[index].style.display="none"
+            fieldSets[index+1].style.display="block"
+            let reqObj = {};
+
+            let language_value=[];
+            let hindi_value=[];
+            let english_value=[];
+            let gujarati_value=[];
+
+            let tech_name=[];
+            let php=[];
+            let mysql=[];
+            let laravel=[];
+            let oracle=[];
+
+            console.log(document.querySelectorAll(`.${fieldSets[index].id}`));
+            [...document.querySelectorAll(`.${fieldSets[index].id}`)].map((element) => {
+                reqObj["cid"] = cid;
+            console.log('sdga',element);
+
+            if(fieldSets[index].id=='education' || fieldSets[index].id=='work_experience' || fieldSets[index].id=='referance_contact' || fieldSets[index].id=='edu_id' || fieldSets[index].id=='ref_id'){
+                console.log('val',element   );
+                if(reqObj.hasOwnProperty(element.id)){
+                    reqObj[element.id].push(element.value)
+                }
+                else{
+                    reqObj[element.id] = []
+                    reqObj[element.id].push(element.value)
+                }  
+                // reqObj[element.id] = courseName
+            }
+            else if(fieldSets[index].id=='language_known'){
+                [...document.querySelectorAll(`.sub-${element.id[0]}field`)].map((sublangchkbox)=>{
+                    if(document.getElementById(`${element.id}`).checked){
+                        if(!language_value.includes(element.value))language_value.push(element.value)
+                        if(element.id=="hindi"){
+                            if(sublangchkbox.checked){
+                             hindi_value.push(sublangchkbox.value)
+                            }else{
+                                hindi_value.push("")
+                            } 
+                            }
+
+                        if(element.id=="gujarati"){
+                                
+                            if(sublangchkbox.checked){
+                                    gujarati_value.push(sublangchkbox.value)
+                            }else{
+                                gujarati_value.push("")
+                            } 
+           
+                        }
+                        if(element.id=="english"){
+                                if(sublangchkbox.checked){
+                                    english_value.push(sublangchkbox.value)
+                            }else{
+                                english_value.push("")
+                            } 
+                                
+                            }
+                    }
+                      
+                    reqObj["hindi"] = hindi_value;
+                    reqObj["gujarati"] =gujarati_value;
+                    reqObj["english"] =english_value;
+                    reqObj["language"] =language_value;
+                   
+                })
+               
+
+            }
+           
+            else if(fieldSets[index].id=="tech_known"){
+          
+                console.log(document.querySelectorAll(`.sub-${element.id[0]}field`));
+                [...document.querySelectorAll(`.sub-${element.id[0]}field`)].map((sublangchkbox)=>{
+                    console.log('fd',document.getElementById(`${element.id}`));
+                    if(document.getElementById(`${element.id}`).checked){
+                        if(!tech_name.includes(element.value)){
+                            console.log('checked',tech_name );
+                            
+                            tech_name.push(element.value)
+                        }
+                        if(element.id=="php"){
+                                if(sublangchkbox.checked){
+                                    php.push(sublangchkbox.value)
+                                }
+                            }
+
+                        if(element.id=="laravel"){
+                                
+                            if(sublangchkbox.checked){
+                                laravel.push(sublangchkbox.value)
+                            } 
+           
+                        }
+                        if(element.id=="mysql"){
+                                    if(sublangchkbox.checked){
+                                        mysql.push(sublangchkbox.value)
+                                }
+                                
+                            }
+                                if(element.id=="oracle"){
+                                    if(sublangchkbox.checked){
+                                        oracle.push(sublangchkbox.value)
+                                }
+                                
+                            }
+                    }
+                      
+                    reqObj["tech"] = tech_name;
+                    reqObj["php"] =php;
+                    reqObj["mysql"] =mysql;
+                    reqObj["laravel"] =laravel;
+                    reqObj["oracle"] = oracle
+                   
+                })
+            }
+            else{
+                        if (element.id == "male" || element.id == "female") {
+                            console.log('nk');
+                            if (document.getElementById(`${element.id}`).checked) {
+                                reqObj["gender"] = element.value
+                            }
+                        } else {
+                            console.log('ahi ayu');
+                            reqObj[element.id] = element.value;
+                            console.log('aa',reqObj);
+
+                        }
+                    }
+
+            console.log('el',element.id,element.value);
+        })
+        if(mode=='"insert"'){
+            getData(reqObj,fieldSets[index].id) 
+         }
+         else{
+            updateData(reqObj,fieldSets[index].id)
+        }
+           console.log(reqObj);
+
+           
+        });
+    })
+    
+
+    function save(mode) {
+        
+        // console.log(document.querySelectorAll(`.${fieldSets[index].id}`));
+        let reqObj = {};
+        reqObj["cid"] = cid;
+           [...document.querySelectorAll(`.preferances`)].map((element) => {
+            reqObj[element.id] = element.value;
+           })
+           console.log(reqObj);
+           if(mode=='"insert"'){ 
+            getData(reqObj,'preferances') 
+         }
+         else{
+            updateData(reqObj,'preferances')
+        }
+    }
+
+    function getData(reqObj,routname) {
+        console.log('this is',JSON.stringify(reqObj));
+           const response = fetch(`http://localhost:3000/${routname}`, {
+            method: "POST",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reqObj), // body data type must match "Content-Type" header
+        }).then((response) => response.json()).then((data) => {
+            if(cid == ""){
+                cid = data.cid;
+            }
+        });
+    }
+
+    function updateData(reqObj,routname) {
+        console.log('this is',JSON.stringify(reqObj));
+           const response = fetch(`http://localhost:3000/update_${routname}`, {
+            method: "POST",
+            mode: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(reqObj), // body data type must match "Content-Type" header
+        }).then((response) => response.json()).then((data) => {
+            if(cid == ""){
+                cid = data.cid;
+            }
+        });
+    }
+
+
+
+
+
+    prevBtns.forEach((button,index)=>{
+        button.addEventListener("click", function () {
+            fieldSets[index+1].style.display="none"
+            fieldSets[index].style.display="block"
+        })
+    })
+
+    let allow = true;
+
+      //for enabling and disabling subfield of checboxes
+  const enDisFields = (lang) => {
+        // console.log(lang);
+        let subfields = document.querySelectorAll(`.sub-${lang}field`)
+        // console.log('sub', subfields);
+        for (let i = 0; i < subfields.length; i++) {
+
+            if (subfields[i].disabled) {
+                subfields[i].disabled = false;
+            }
+            else {
+                subfields[i].checked = false;
+                subfields[i].disabled = true;
+            }
+        }
+    }   
+    try{
+        let lang = '<%-JSON.stringify(language)%>';
+    if(lang!=""){
+        let langJsonParse = JSON.parse(lang)
+    // console.log('s',langJsonParse);
+        langJsonParse.map((langObj) => {
+            let langEle = document.getElementById(langObj.language_name)
+            let lang_check_is_true = false;
+            [...document.querySelectorAll(`.${langObj.language_name}`)].map((element) => {
+                console.log(element.value);
+                if (lang_check_is_true) {
+                    element.disabled = false
+                }
+                if (element.value == langObj.language_name) {
+                    element.checked = true
+                    lang_check_is_true = true
+    
+                }
+                if (element.value == langObj.lang_read) {
+                    element.checked = true
+    
+                }
+                if (element.value == langObj.lang_speak) {
+                    element.checked = true
+    
+                }
+                if (element.value == langObj.lang_write) {
+                    element.checked = true
+    
+                }
+    
+            })
+    
+    
+        });
+    }
+    
+    }
+    catch{
+console.log('not found');
+    }
+    
+
+try{
+    let tech = '<%-JSON.stringify(tech)%>';
+    let techJsonParse = JSON.parse(tech);
+    if(tech!=""){
+    techJsonParse.map((techObj) => {
+        let techEle = document.getElementById(techObj.t_name)
+        let tech_check_is_true = false;
+        [...document.querySelectorAll(`.${techObj.t_name}`)].map((element) => {
+            console.log(element.value);
+            if (tech_check_is_true) {
+                element.disabled = false
+            }
+            if (element.value == techObj.t_name) {
+                element.checked = true
+                tech_check_is_true = true
+
+            }
+            if (element.value == techObj.t_level) {
+                element.checked = true
+
+            }
+        })
+
+    });
+}
+
+}
+catch{
+console.log('not found ');
+}
+
+    [...document.querySelectorAll('.check')].map((element) => {
+        element.selected = ""
+    })
+
+    function addField(pdiv, cdiv) {
+        const node = document.getElementById(cdiv);
+        const clone = node.cloneNode(true);
+        document.getElementById(pdiv).appendChild(clone);
+    }
+    function deleteField(pdiv, cdiv) {
+        const node = document.getElementById(cdiv);
+        if (document.querySelectorAll(`#${cdiv}`).length > 1) {
+
+            document.getElementById(pdiv).removeChild(node);
+        }
+    }
+  
+
+
+    //helper validation functions using regx validations
+    const validate_email = (email) => {
+        let emailRegx = /^[^\s@]+@[^\s@]+.[^\s@]+$/
+
+        // console.log(email);
+        if (!emailRegx.test(email)) {
+            document.getElementById('error-email').innerHTML = "email is invalid"
+            console.log('asc');
+            allow = false;
+        }
+    }
+    const validate_phoneNumber = (phoneNumber) => {
+        let phoneNumberRegx = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+
+        if (!phoneNumberRegx.test(phoneNumber)) {
+            document.getElementById('error-phoneNumber').innerHTML = "phone number is invalid"
+            console.log('asc2');
+            allow = false;
+        }
+    }
+    const validate_date = (date, name) => {
+        let dateRegx = /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/
+
+        if (!dateRegx.test(date)) {
+            document.getElementById('error-' + name).innerHTML = "Date is invalid"
+            console.log('asc3');
+            allow = false;
+        }
+    }
+    const validate_percentage = (pr, name) => {
+        // let PercentageRegex = /^((100)|(\d{1,2}(.\d*)?))%?$/
+        // let PercentageRegex = /^( 100(?:\.0{1,2})? | 0*?\.\d{1,2} | \d{1,2}(?:\.\d{1,2})? )% $/
+        let PercentageRegex = /\d*\.\d+%?/;
+        if (!PercentageRegex.test(pr)) {
+            document.getElementById('error-' + name).innerHTML = "percentage is invalid"
+            console.log('asc6');
+            allow = false;
+        }
+    }
+    const validate_zipcode = (zcode) => {
+        let zipcodeRegx = /^[1-9][0-9]{5}$/
+        if (!zipcodeRegx.test(zcode)) {
+            document.getElementById('error-zip_code' + name).innerHTML = "zipcode is invalid"
+            console.log('asc5');
+            allow = false;
+        }
+    }
+    
+      //Main validation function
+      function validation() {
+
+allow = true;
+let errors = document.querySelectorAll('.errors')
+
+for (let err of errors) {
+    err.innerHTML = ""
+}
+
+let eleList = document.querySelectorAll('.required')
+// console.log(eleList);
+
+for (let i = 0; i < eleList.length; i++) {
+
+    if (eleList[i].value.trim() == '') {
+        console.log(eleList[i].value);
+        console.log('error-' + eleList[i].name);
+        document.getElementById('error-' + eleList[i].name).innerHTML = eleList[i].name + " can't be none"
+        console.log('asc7');
+        allow = false;
+    }
+
+    if (eleList[i].value != '' && eleList[i].name == 'email') {
+        validate_email(eleList[i].value)
+    }
+
+    if (eleList[i].value != '' && eleList[i].name == 'phoneNumber') {
+        validate_phoneNumber(eleList[i].value)
+    }
+
+    let datefields = ['dob', 'cfrom1', 'cto1', 'cfrom2', 'cto2', 'cfrom3', 'cto3']
+    if (eleList[i].value != '' && datefields.includes(eleList[i].name)) {
+        validate_date(eleList[i].value, eleList[i].name)
+    }
+
+    if (eleList[i].value != '' && eleList[i].id == 'percentage') {
+        console.log(eleList[i], eleList[i].id);
+        validate_percentage(eleList[i].value, eleList[i].id)
+    }
+
+    if (eleList[i].value != '' && eleList[i].name == 'zip_code') {
+        validate_zipcode(eleList[i].value, eleList[i].name)
+    }
+
+}
+
+//check for atleast one subfield is selected of selected checkbox(language,technology) 
+let langMainCheckBox = document.querySelectorAll('.langMainCheck')
+let subfields2;
+let cnt2 = 0;
+let subfieldcnt2 = 0;
+for (let i = 0; i < langMainCheckBox.length; i++) {
+    console.log("langchk " + i + " " + langMainCheckBox[i].checked)
+    console.log(langMainCheckBox[i].name[0])
+
+
+    if (!langMainCheckBox[i].checked) {
+        cnt2++;
+    }
+    console.log('z', cnt2, langMainCheckBox);
+    if (cnt2 == langMainCheckBox.length) {
+        document.getElementById('error-lang').innerHTML = "*fill atleast one language"
+        console.log('asc9');
+        allow = false;
+    }
+    if (document.getElementById('error-lang').innerHTML == "" ) {
+            subfields2 = document.querySelectorAll(`.sub-${langMainCheckBox[i].value[0]}field`)
+            if (langMainCheckBox[i].checked) {
+                for (let i = 0; i < subfields2.length; i++) {
+                    if (!subfields2[i].checked) {
+                        subfieldcnt2++;
+                    }
+                    console.log('subfieldcnt',subfieldcnt2, subfields2.length);
+                    if (subfieldcnt2 == subfields2.length) {
+                        document.getElementById('error-sublang').innerHTML = "*select atleast one field of selected language"
+                        console.log('asc10');
+                        allow = false;
+                        subfieldcnt2 = 0
+                        break;
+                    }
+                    else {
+                        document.getElementById('error-sublang').innerHTML = ""
+                    }
+                }
+                if(!allow){
+                    break;
+                }
+                subfieldcnt2 = 0
+            }
+        }
+        else {
+            document.getElementById('error-lang').innerHTML = ""
+        }
+}
+
+let techCheckBox = document.querySelectorAll('.techMainCheck')
+
+let subfields;
+let cnt = 0;
+let subfieldcnt = 0;
+for (let i = 0; i < techCheckBox.length; i++) {
+
+    if (!techCheckBox[i].checked) {
+        cnt++;
+    }
+    console.log('a', cnt, techCheckBox.length);
+    if (cnt == techCheckBox.length) {
+        document.getElementById('error-tech').innerHTML = "*fill atleast one technology"
+        console.log('asc10');
+        allow = false;
+    }
+        if (document.getElementById('error-tech').innerHTML == "") {
+            console.log('aa ryu',techCheckBox[i]);
+            if (techCheckBox[i].checked) {
+                subfields = document.querySelectorAll(`.sub-${techCheckBox[i].id[0]}field`)
+                console.log('sub',subfields);
+                console.log(techCheckBox[i]);
+
+                for (let j = 0; j < subfields.length; j++) {
+                    console.log(i, techCheckBox[i].checked);
+                    if (!subfields[j].checked) {
+                        subfieldcnt++;
+                    }
+                    console.log('sd', subfieldcnt, subfields.length);
+                    if (subfieldcnt == subfields.length) {
+                        console.log('vbvb');
+                        document.getElementById('error-subtech').innerHTML = "*choose level of selected technology"
+                        console.log('asc11');
+                        allow = false;
+                        subfieldcnt = 0
+                        break;
+                    }
+                    else {
+                        document.getElementById('error-subtech').innerHTML = ""
+                    }
+                }
+                if(!allow){
+                    break;
+                }
+                subfieldcnt = 0
+            }
+        }
+        else {
+            document.getElementById('error-tech').innerHTML = ""
+        }
+}
+
+
+
+//fll all or empty
+let fill_all_or_not_fields = ['check-all-fill-or-not-workExp', 'check-all-fill-or-not-eduDetail', 'check-all-fill-or-not-refrence']
+for (let i = 0; i < fill_all_or_not_fields.length; i++) {
+    let check_all_fill = 0
+
+    let check_all_fill_or_not = document.querySelectorAll(`.${fill_all_or_not_fields[i]}`)
+
+    for (let i = 0; i < check_all_fill_or_not.length; i++) {
+        console.log("field_required[i].value:" + check_all_fill_or_not[i].value + ":" + i);
+        if (check_all_fill_or_not[i].value == "") {
+            if (check_all_fill == 1) {  
+                check_all_fill = 2
+                break;
+            }
+            check_all_fill = 3
+        } else if (!check_all_fill_or_not[i].value == "") {
+            if (check_all_fill == 3) {
+                check_all_fill = 2
+                break;
+            }
+            check_all_fill = 1
+        }
+        // console.log('check all fill is :',check_all_fill);
+
+    }
+    if (check_all_fill == 2) {
+        document.getElementById(fill_all_or_not_fields[i]).innerHTML = "either you fill all field or empty all field"
+        document.getElementById(fill_all_or_not_fields[i]).style.color = "red"
+        console.log('asc18');
+        allow = false;
+
+    }
+}
+console.log(allow);
+
+// if(allow){
+//     return true;
+// }
+
+return allow;
+// return false
+}
+
+</script>
+
+</html>
