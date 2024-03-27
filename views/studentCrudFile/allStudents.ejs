@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        table,
+        th,
+        td{
+            border: 1px solid black;
+            background-color: skyblue;
+        }
+        td{
+            padding: 12px;
+        }
+        div{
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+        <table id="tableId">
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <!-- <th>Age</th> -->
+                <th>Phone number</th>
+                <th>Email</th>
+                <!-- <th>Gender</th>
+                <th>Hobbies</th>
+                <th>Address</th>
+                <th>Detail</th> -->
+            </tr>
+            <% for(var i=0; i<data.length; i++) {%>
+                <tr>
+                    <td>
+                        <%=data[i].fname%>
+                    </td>
+                    <td>
+                        <%=data[i].lname%>
+                    </td>
+                    <!-- <td>
+                        <%=data[i].age%>
+                    </td> -->
+                    <td>
+                        <%=data[i].phoneNumber%>
+                    </td>
+                    <td>
+                        <%=data[i].email%>
+                    </td>
+                    <!-- <td>
+                        <%=data[i].gender%>
+                    </td>
+                    <td>
+                        <%=data[i].hobbies%>
+                    </td>
+                    <td>
+                        <%=data[i].address%>
+                    </td> -->
+                    <td>    
+                        <a href="/students/students/<%=data[i].id%>" >view Detail</a>
+                    </td>
+                </tr>
+            <% } %>
+        </table>    
+    </div>
+</body>
+
+</html>

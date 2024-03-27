@@ -44,6 +44,8 @@ app.use('/html1', require('./routes/task/html1/html1'))
 app.use('/html2', require('./routes/task/html2/html2'))
 app.use('/html3', require('./routes/task/html3/html3'))
 
+app.use('/students', require('./routes/task/studentCrudFileSys/studentCrudFileSys'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })

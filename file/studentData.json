@@ -1,0 +1,77 @@
+[
+    {
+        "fname": "Rushikesh",
+        "lname": "Falak",
+        "age": "21",
+        "phoneNumber": "9876543210",
+        "email": "rushif12@gmail.com",
+        "gender": "male",
+        "hobbies": [
+            "coding",
+            "cricket"
+        ],
+        "address": "Rajendrapark\r\n",
+        "id": 965
+    },
+    {
+        "fname": "chirag",
+        "lname": "makwana",
+        "age": "10",
+        "phoneNumber": "876778766",
+        "email": "chikas@m.com",
+        "gender": "male",
+        "hobbies": "coding",
+        "address": "rajkot",
+        "id": 292
+    },
+    {
+        "fname": "jyot",
+        "lname": "khant",
+        "age": "20",
+        "phoneNumber": "88377828",
+        "email": "jyot@k.com",
+        "gender": "male",
+        "hobbies": "coding",
+        "address": "valsad",
+        "id": 741
+    },
+    {
+        "fname": "Hansaben",
+        "lname": "Bharatbhai Parmar",
+        "age": "50",
+        "phoneNumber": "997676588",
+        "email": "Hansaben@parmar.com",
+        "gender": "female",
+        "hobbies": [
+            "cricket",
+            "voolyball"
+        ],
+        "address": "mavadi fire brigade,rajkot",
+        "id": 378
+    },
+    {
+        "fname": "Ayush",
+        "lname": "Mehta",
+        "age": "21",
+        "phoneNumber": "983535251",
+        "email": "ayush@m.com",
+        "gender": "male",
+        "hobbies": [
+            "coding",
+            "cricket"
+        ],
+        "address": "Ahmedabad",
+        "id": 662
+    },
+    {
+        "fname": "fds",
+        "lname": "dfhsh",
+        "age": "12",
+        "phoneNumber": "8989829304",
+        "email": "rushif12@gmail.com",
+        "gender": "male",
+        "hobbies": "coding",
+        "address": "ghjfg",
+        "id": 48
+    }
+]

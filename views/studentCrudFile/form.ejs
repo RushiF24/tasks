@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" href="/studentCrudFile/css/style.css">
+
+</head>
+
+<body>
+
+
+	<form action="/students/addStudent" method="post">
+		<fieldset class="formbg">
+            <legend>
+                <h2>Student Form</h2>
+            </legend>
+		<label for="firstName">First Name: </label>
+		<input type="text" name="fname" required>
+		<br>
+		&emsp;
+		<br>
+
+		<label for="lastName">Last Name: </label>
+		<input type="text" name="lname" required>
+
+		<br>
+		&emsp;
+		<br>
+
+		<label for="age">Age</label>
+		<input type="number" name="age" id="" required>
+		<br>
+		&emsp;
+		<br>
+		<label for="phoneNumber">Phone Number: </label>
+		<input type="text" name="phoneNumber" required>
+		<br>
+		&emsp;
+		<br>
+		<label for="email">Email: </label>
+		<input type="email" name="email" required>
+
+
+		<br>
+		&emsp;
+		<br>
+
+
+		<label for="gender">Gender:</label>
+		<input type="radio" name="gender" value="male" checked>
+		<label for="male">Male</label>
+		<input type="radio" name="gender" value="female">
+		<label for="female">Female</label>
+
+		<br>
+		&emsp;
+		<br>
+
+		<label for="hobbies">Hobbies: </label>
+		<input type="checkbox" name="hobbies" value="coding" checked>
+		<label for="vehicle1"> Coding</label>
+		<input type="checkbox" name="hobbies" value="cricket">
+		<label for="vehicle2"> Cricket</label>
+		<input type="checkbox" name="hobbies" value="voolyball">
+		<label for="vehicle3"> Voolyball</label>
+
+		<br>
+		&emsp;
+		<br>
+
+		<label for="address1">Address1: </label>
+		<textarea name="address" id="" cols="40" rows="5" required></textarea>
+
+
+		<br>
+		&emsp;
+		<br>
+
+		<input type="submit" value="submit">
+	</fieldset>
+	</form>
+</body>
+
+</html>
