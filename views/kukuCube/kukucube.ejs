@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>JS Game</title>
+
+    <style>
+        body {
+            background-color: wheat;
+        }
+
+        div {
+            height: 100%;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            table-layout: fixed;
+        }
+
+        table {
+
+            background-color: rgb(9, 203, 252, 1);
+        }
+
+        td {
+            width: 100px;
+            height: 100px;
+            /* background-color: #b42c1c; */
+        }
+
+        #tableDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #start-op {
+            opacity: 0.8;
+        }
+    </style>
+    <script>
+        var startScore = 0;
+        var endSeconds = 10;
+
+        var timeCounter = setInterval(function () {
+            if (endSeconds >= 0) {
+                document.getElementById("countdown").innerHTML = endSeconds + " seconds remaining"
+            }
+            else {
+                clearInterval(timeCounter);
+                document.getElementById("countdown").innerHTML = alert('your time is up, your score is ' + startScore);
+                window.location.reload()
+                document.getElementsByTagName("body")[0].innerHTML = `<h2 style="margin-top:300px;margin-left:50%"> Your score: ${value} </h2>`;
+            }
+
+            endSeconds -= 1;
+        }, 1000)
+
+
+        randomValGen = (row, col) => {
+            let total = row * col;
+            let num = Math.floor(Math.random() * total);
+            return num;
+        }
+        increaseSize = () => {
+            let table = document.getElementById("tableId");
+            table.addEventListener("click", function (e) {
+                if (e.target.id == 'start-op') {
+                    addRow();
+                    addCol();
+                    startScore++;
+                    document.getElementById('score').innerHTML = startScore;
+                    const randomNum = randomValGen(table.rows.length, table.rows[0].cells.length)
+
+                    console.log("random is " + randomNum);
+
+                    var removeId = document.getElementById('start-op').setAttribute('id', '')
+
+                    let data = document.querySelectorAll('td');
+                    data[randomNum].setAttribute('id', 'start-op')
+                    randomColorGenerator()
+                }
+            })
+        }
+        randomColorGenerator = () => {
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            let tdlist = document.querySelectorAll('td');
+
+            for (let i = 0; i < tdlist.length; i++) {
+
+                tdlist[i].style.backgroundColor = "#" + randomColor;
+            }
+        }
+
+        addRow = () => {
+            let table = document.getElementById("tableId");
+            let row = table.insertRow(-1);
+
+            let cellCount = table.rows[0].cells.length;
+            for (let i = 0; i < cellCount; i++) {
+                row.insertCell(i);
+            }
+            console.log(row.children);
+
+        }
+        addCol = () => {
+            let table = document.getElementById("tableId");
+            row = table.rows;
+            let k = -1;
+            for (let i = 0; i < row.length; i++) {
+                row[i].insertCell(k)
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Rushikesh Falak - (24DEV059)</h1>
+    <div id="timer">
+        <h4 id="countdown"></h4>
+    </div>
+    <div id="score">
+        <span id="scoreId"></span>
+    </div>
+    <div id="tableDiv">
+
+        <table id="tableId">
+            <tr>
+                <td onclick="increaseSize(this)" id="start-op"></td>
+                <td onclick="increaseSize(this)"></td>
+            </tr>
+            <tr>
+                <td onclick="increaseSize(this)"></td>
+                <td onclick="increaseSize(this)"></td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

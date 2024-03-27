@@ -33,8 +33,14 @@ app.use('/', require('./routes/register/register'))
 app.use('/login', require('./routes/login/login'))
 app.use('/forgotpassword', require('./routes/forgotpassword/forgotpassword'))
 app.use('/logout', require('./routes/logout/logout'))
+
 app.use('/user', require('./routes/user/user'))
 
+app.use('/dynamic_table', require('./routes/task/dynamicTable/dynamic_table'))
+app.use('/kukucube', require('./routes/task/kukucube/kukucube'))
+app.use('/tictactoe', require('./routes/task/tictactoe/tictactoe'))
+
+app.use('/html1', require('./routes/task/html1/html1'))
 
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")

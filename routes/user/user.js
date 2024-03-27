@@ -6,11 +6,11 @@ const db = require('../../db')
 router.get('/welcome', authMiddleware,(req, res) => {
     try {
         // let getdataQ = `select * from users where email='${req.query.email}'`
-        let getdataQ = `select * from users;`
-        console.log(getdataQ);
-        db.query(getdataQ, (err, result) => {
+        let gettaskdataQ = `select * from task_table;`
+        console.log(gettaskdataQ);
+        db.query(gettaskdataQ, (err, result) => {
             // console.log(result);
-            res.render('./userpages/welcome', { msg: `Welcome ${result[0].first_name} ${result[0].last_name}` })
+            res.render('userpages/taskTable',{data:result})
         })
     } catch (error) {
         return res.end("try again to welcome")

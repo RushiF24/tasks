@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+</head>
+<style>
+    body {
+        background-color: wheat;
+    }
+   
+    h1{
+        text-align: center;
+    }
+    tr,
+    td {
+        border: 1px solid black;
+    }
+
+    table {
+        display: flex;
+        justify-content: center;
+        width: 300px;
+        height: 325px;
+        /* background-color: rgb(9, 203, 252, 1); */
+    }
+
+    td {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        border-radius: 10px;
+        /* background-color: #b42c1c; */
+    }
+    #tableDiv {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+
+<body>
+    <h1>Rushikesh Falak - (24DEV059)</h1>
+        <span id="turn">X's turn</span>
+        <div id="tableDiv">
+
+            <table id="tableId">
+                <tr>
+                <td id="1"></td>
+                <td id="2"></td>
+                <td id="3"></td>
+            </tr>
+            <tr>
+                <td id="4"></td>
+                <td id="5"></td>
+                <td id="6"></td>
+            </tr>
+            <tr>
+                <td id="7"></td>
+                <td id="8"></td>
+                <td id="9"></td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        let table = document.getElementById('tableId');
+
+        let cnt = 0;
+        table.addEventListener("click", function (e) {
+            let id =e.target.id;
+            console.log(id);
+            if (cnt % 2 == 0) {
+                let clickedBox = document.getElementById(id);
+                clickedBox.innerText = "X";
+                document.getElementById(id).style.pointerEvents = 'none';
+                document.getElementById('turn').innerText = "O's turn";
+            }
+            else {
+                let clickedBox = document.getElementById(id);
+                clickedBox.innerText = "O";
+                document.getElementById(id).style.pointerEvents = 'none';
+                document.getElementById('turn').innerText = "X's turn"
+            }
+            cnt++;
+
+
+            if (cnt >= 5) {
+                let td1 = document.getElementById("1").innerText;
+                let td2 = document.getElementById("2").innerText;
+                let td3 = document.getElementById("3").innerText;
+                let td4 = document.getElementById("4").innerText;
+                let td5 = document.getElementById("5").innerText;
+                let td6 = document.getElementById("6").innerText;
+                let td7 = document.getElementById("7").innerText;
+                let td8 = document.getElementById("8").innerText;
+                let td9 = document.getElementById("9").innerText;
+
+
+                if ((td1 == 'X' && td2 == 'X' && td3 == 'X') ||
+                    (td4 == 'X' && td5 == 'X' && td6 == 'X') ||
+                    (td7 == 'X' && td8 == 'X' && td9 == 'X') ||
+                    (td1 == 'X' && td4 == 'X' && td7 == 'X') ||
+                    (td2 == 'X' && td5 == 'X' && td8 == 'X') ||
+                    (td3 == 'X' && td6 == 'X' && td9 == 'X') ||
+                    (td1 == 'X' && td5 == 'X' && td9 == 'X') ||
+                    (td3 == 'X' && td5 == 'X' && td6 == 'X')) {
+
+                    alert("x is winner");
+                    location.reload();
+                }
+                else if (
+                    (td1 == 'O' && td2 == 'O' && td3 == 'O') ||
+                    (td4 == 'O' && td5 == 'O' && td6 == 'O') ||
+                    (td7 == 'O' && td8 == 'O' && td9 == 'O') ||
+                    (td1 == 'O' && td4 == 'O' && td7 == 'O') ||
+                    (td2 == 'O' && td5 == 'O' && td8 == 'O') ||
+                    (td3 == 'O' && td6 == 'O' && td9 == 'O') ||
+                    (td1 == 'O' && td5 == 'O' && td9 == 'O') ||
+                    (td3 == 'O' && td5 == 'O' && td6 == 'O')
+                ) {
+                    alert("O is winner");
+                    location.reload();
+                }
+            }
+            if (cnt == 9) {
+                alert('Game is Finished! no one is winner')
+            }
+
+        })
+    </script>
+</body>
+
+</html>

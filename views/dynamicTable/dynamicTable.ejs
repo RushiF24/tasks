@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Table</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            table-layout: fixed;
+            margin-left: 150px;
+        }
+
+        tr td {
+            border: 1px solid black;
+            padding: 15px;
+            margin-left: 200px;
+        }
+
+        td {
+            width: 500px;
+            height: 100px;
+            background-color: rgb(9, 203, 252);
+        }
+
+        #top {
+            float: right;
+        }
+
+        #bottom {
+            position: fixed;
+            top: 50%;
+        }
+
+        tr:nth-of-type(even) td:nth-of-type(odd),
+        tr:nth-of-type(odd) td:nth-of-type(even) {
+            background-color: rgb(222, 224, 62);
+        }
+    </style>
+    <script>
+        addRow = () => {
+            let table = document.getElementById("tableId");
+            let row = table.insertRow(-1);
+
+            let cellCount = table.rows[0].cells.length;
+            for (let i = 0; i < cellCount; i++) {
+                row.insertCell(i);
+            }
+
+        }
+        delRow = () => {
+            let table = document.getElementById("tableId");
+            let rows = table.rows;
+
+            if (rows.length > 2) {
+                table.deleteRow(-1);
+            }
+            else {
+                alert("can't delete,row is less than two")
+            }
+        }
+        addCol = () => {
+            let table = document.getElementById("tableId");
+            row = table.rows;
+            let k = -1;
+            for (let i = 0; i < row.length; i++) {
+                row[i].insertCell(k)
+            }
+        }
+        delCol = () => {
+            let table = document.getElementById("tableId");
+            row = table.rows;
+            let k = 0;
+
+            if (row[0].cells.length > 2) {
+                for (let i = 0; i < row.length; i++) {
+                    row[i].deleteCell(k)
+                }
+            }
+            else {
+                alert("can't delete,column is less than two");
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Rushikesh Falak - (24DEV059) 01-02-2024</h1>
+    <div id="top">
+        <p>for adding rows</p>
+        <button onclick="addRow()">+</button>
+        <button onclick="delRow()">-</button>
+    </div>
+    <table id="tableId">
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div id="bottom">
+        <p>for adding columns</p>
+        <button onclick="addCol()">+</button>
+        <button onclick="delCol()">-</button>
+    </div>
+
+</body>
+
+</html>
