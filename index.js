@@ -41,6 +41,7 @@ app.use('/kukucube', require('./routes/task/kukucube/kukucube'))
 app.use('/tictactoe', require('./routes/task/tictactoe/tictactoe'))
 
 app.use('/html1', require('./routes/task/html1/html1'))
+app.use('/html2', require('./routes/task/html2/html2'))
 
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
