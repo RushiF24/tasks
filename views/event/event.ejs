@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Event Table </title>
+</head>
+<style>
+    td {
+        border: 1px solid black;
+        padding: 15px;
+    }
+
+    table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    tr {
+        height: 100px;
+    }
+
+    .odd {
+        background-color: #f0b330;
+    }
+</style>
+
+<body onresize="onresizeFunc()" onload="onloadFunc()">
+    <table>
+        <tr>
+            <td class="odd">
+                <label for="state">State:</label>
+                <select name="state" onchange="onchangeFunc()">
+                    <option value="Gujarat">Gujarat</option>
+                    <option value="Maharashtra">Maharashtra</option>
+                    <option value="Tamilnadu">Tamilnadu</option>
+                    <option value="Karnataka">Karnataka</option>
+                </select>
+            </td>
+            <td>
+                <button onclick="onclickFunc()">Click Me</button>
+            </td>
+            <td class="odd"><input type="text" oncopy="oncopyFunc()" value="Try to copy me"></td>
+            <td><input type="text" onmouseover="onmouseoverFunc()" value="Try to move on me using cursor"></td>
+        </tr>
+        <tr>
+            <td><input type="text" onmouseout="onmouseoutFunc()" value="Try to move out me using mouse cursor"></input>
+            </td>
+            <td class="odd"><input type="text" value="Try to load page"></input></td>
+            <td><input type="text" onkeydown="onkeydownFunc()" value="Try to press any key in box"></td>
+            <td class="odd"><input type="text" onblur="onblurFunc()" value="onblur"></td>
+        </tr>
+        <tr>
+            <td class="odd"><input type="text" value="try to resize window"></td>
+            <td>
+                <p ondrag="ondragFunc()">try to drag me</p>
+            </td>
+            <td class="odd"><input type="text" onselect="onselectFunc()" value="try to select me"></td>
+            <td><textarea rows="5" cols="20" onwheel="onwheelFunc()"> try to rotate wheel of mouse me</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="text" oninput="oninputFunc()" value="try to input any text"></td>
+            <td class="odd"><input type="text" oncut="alert('on cut is triggred')" value="try to cut me"></td>
+            <td><input type="text" onpaste="alert('on paste is triggred')" value="try to paste me"></td>
+            <td class="odd"><img src="image.jpeg" onerror="alert('onerror is triggred')"> showing error while rendering
+                image</td>
+        </tr>
+        <tr>
+            <td class="odd"><input type="text" value="try to focus on me" onfocus="alert('onfocus is triggred')"></td>
+            <td>
+                <p ondblclick="alert('ondouble click is triggred')">try to double click me</p>
+            </td>
+            <td class="odd">
+                <div style="border: 2px solid black;" ondragend="alert('draggend is triggred')">
+                    try to drag and drop to other box
+                </div>
+                <div style="border: 2px solid black; width: 200px; height: 20px;">
+
+                </div>
+            </td>
+
+            <td>
+                <details ontoggle="alert('ontoggle is triggred')">
+                    <summary>toogle me</summary>
+                </details>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div style="border: 2px solid black; font-size: 10px;" ondrop="alert('ondrop is triggred')">
+                    try to drop me to other box
+                </div>
+                <div style="border: 2px solid black; width: 200px; height: 20px;">
+
+                </div>
+            </td>
+            <td class="odd">
+                <div onscroll="alert('on scroll is triggred')"
+                    style="border: 1px solid black; width: 200px; height: 100px; overflow: scroll;">In my younger and
+                    more vulnerable years my father gave me some advice that I've been turning over in my mind ever
+                    since.
+                    <br><br>
+                    'Whenever you feel like criticizing anyone,' he told me, just remember that all the people in this
+                    world haven't had the advantages that you've had.' Lorem ipsum dolor sit amet consectetur
+                    adipisicing elit. Ea, ullam, odio, sit officiis rem quisquam ducimus saepe consequatur doloribus
+                    quos eos quis.
+                </div>
+            </td>
+            <td>
+                <div onmouseover="mOver(this)" onmouseout="mOut(this)"
+                    style="background-color:#D94A38;width:120px;height:20px;padding:40px;">
+                    Mouse Over Me</div>
+            </td>
+            <td class="odd"><img onmouseenter="bigImg(this)" border="0" src="img.jpeg" alt="nature" width="32" height="32"> onmouseenter event</td>
+        </tr>
+    </table>
+    <script>
+        onchangeFunc = () => {
+            alert('on change triggered')
+        }
+
+        onclickFunc = () => {
+            alert("on click is triggered")
+        }
+        oncopyFunc = () => {
+            alert('on copy is triggred')
+        }
+        onmouseoverFunc = () => {
+            alert('onmouseover is triggred')
+        }
+        onmouseoutFunc = () => {
+            alert('onmouseout is triggred')
+        }
+        onloadFunc = () => {
+            alert('onload is triggered')
+        }
+        onkeydownFunc = () => {
+            alert('onkeydown is triggered')
+        }
+        onblurFunc = () => {
+            alert('onblur is triggred')
+        }
+        onresizeFunc = () => {
+            alert('on resize is triggred')
+        }
+        ondragFunc = () => {
+            alert('on drag is triggred ')
+        }
+        onselectFunc = () => {
+            alert("on select is triggred")
+        }
+        onwheelFunc = () => {
+            alert("on wheel is triggered")
+        }
+        oninputFunc = () => {
+            alert('oninput is triggred')
+        }
+        mOver = (obj) => {
+            obj.innerHTML= "Triggered"
+        }
+        mOut = (obj) => {
+            obj.innerHTML= "Mouse Over Me"
+        }
+        bigImg = ()=> {
+            alert('onmouseenter is triggred')
+        }
+    </script> 
+</body>
+
+</html>

@@ -59,6 +59,7 @@ app.use('/jsonplaceholder', require('./routes/task/jsonplaceholder/jsonplacehold
 
 app.use('/timezone', require('./routes/task/timezone/timezone'))
 
+app.use('/event', require('./routes/task/event/event'))
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })
