@@ -20,6 +20,8 @@ const authMiddleware = async (req, res, next) => {
         res.render('login', { err: "not authorized" })
     }
 }
+
+//check if user is not logged in(if yes then redirect to login or register pages)
 const verifyLoginMiddleware = async (req,res,next) => {
     const authHeader = localStorage.getItem("authToken")
     if (authHeader == null) {

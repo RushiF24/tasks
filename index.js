@@ -51,6 +51,8 @@ app.use('/studentsExamAttendenceReport', require('./routes/task/studentsExamAtte
 
 app.use('/delimeterSearch', require('./routes/task/delimeteSearch/delimeteSearch'))
 
+app.use('/jobapplicationform', require('./routes/task/jobapplicationform/jobapplicationform'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })
