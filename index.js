@@ -28,7 +28,6 @@ app.get('/timezone', (req, res) => {
     res.render('timezone')
 })
 
-
 app.use('/', require('./routes/register/register'))
 app.use('/login', require('./routes/login/login'))
 app.use('/forgotpassword', require('./routes/forgotpassword/forgotpassword'))
@@ -45,6 +44,8 @@ app.use('/html2', require('./routes/task/html2/html2'))
 app.use('/html3', require('./routes/task/html3/html3'))
 
 app.use('/students', require('./routes/task/studentCrudFileSys/studentCrudFileSys'))
+
+app.use('/studentsdb', require('./routes/task/studentCrudDb/studentCrudDb'))
 
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")

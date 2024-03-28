@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 1400px;
+            background-color: #02e7ff;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            background-color: skyblue;
+            border-collapse: collapse;
+        }
+
+th{
+    width: 120px;
+}
+
+        div {
+            display: flex;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+        }
+
+        #pageCnt {
+            text-align: center;
+            width: 70px;
+            font-size: 30px;
+        }
+
+        .pagination {
+            margin: 12px;
+            /* border: 1px solid red; */
+        }
+
+        .start,
+        .end {
+            padding: 12px;
+            margin: 0 12px;
+        }
+
+        .leftBtn,
+        .rightBtn {
+            padding: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Table with 50K data</h1>
+    <h3>Total no of Records: <%=total%>
+            </h2>
+            <%- include('./pagination.ejs'); %>
+                <div>
+
+                    <table id="tableId">
+                        <tr>
+                            <th>Sr no<a href="/studentsdb/students/<%=pageno%>/?orderby=student_id">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=student_id&orderdir=desc">\/</a></th> 
+                            <th>First name<a href="/studentsdb/students/<%=pageno%>/?orderby=first_name">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=first_name&orderdir=desc">\/</a></th>
+                            <th>Last name<a href="/studentsdb/students/<%=pageno%>/?orderby=last_name">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=last_name&orderdir=desc">\/</a></th>
+                            <th>Phone number<a href="/studentsdb/students/<%=pageno%>/?orderby=student_mobile_number">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=student_mobile_number&orderdir=desc">\/</a></th>
+                            <th>Email<a href="/studentsdb/students/<%=pageno%>/?orderby=email">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=email&orderdir=desc">\/</a></th>
+                            <th>Date Of Birth<a href="/studentsdb/students/<%=pageno%>/?orderby=dob">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=dob&orderdir=desc">\/</a></th>
+                            <th>City<a href="/studentsdb/students/<%=pageno%>/?orderby=city">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=city&orderdir=desc">\/</a></th>
+                            <th>Address<a href="/studentsdb/students/<%=pageno%>/?orderby=address">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=address&orderdir=desc">\/</a></th>
+                            <th>parent mobile no<a href="/studentsdb/students/<%=pageno%>/?orderby=parent_mobile_number">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=parent_mobile_number&orderdir=desc">\/</a></th>
+                            <th>Country<a href="/studentsdb/students/<%=pageno%>/?orderby=country">/\</a><a href="/studentsdb/students/<%=pageno%>/?orderby=country&orderdir=desc">\/</a></th>
+                        </tr>
+                        <% for(let key of data) {%>
+                            <%const fieldValues=Object.values(key); %>
+                                <tr>
+
+                                    <%for(var i=0;i<fieldValues.length; i++) {%>
+                                        <td>
+                                            <%=fieldValues[i]%>
+                                        </td>
+                                        <% } %>
+
+                                </tr>
+                                <% } %>
+                    </table>
+
+                </div>
+                <%- include('./pagination.ejs'); %>
+
+</body>
+
+</html>
