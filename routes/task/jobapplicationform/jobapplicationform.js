@@ -391,8 +391,7 @@ router.post('/updateCandidate', (req, res) => {
         return res.end()
     }
 })
-
-
+    
 // router.delete('/deleteStudent/:id', (req, res) => {
 //     try {
 //         let deleteStudentsQuery = `delete from student_master where student_id = '${req.params.id}'`;

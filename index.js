@@ -53,6 +53,8 @@ app.use('/delimeterSearch', require('./routes/task/delimeteSearch/delimeteSearch
 
 app.use('/jobapplicationform', require('./routes/task/jobapplicationform/jobapplicationform'))
 
+app.use('/jobapplicationajax', require('./routes/task/jobapplicationajax/jobapplicationajax'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })
