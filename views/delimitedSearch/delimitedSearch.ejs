@@ -1,0 +1,15 @@
+<div class="delimitedSearch">
+    <%
+    let q;
+    try{
+        q=query
+    }
+    catch(error){
+        q=""
+    }%>
+    <form action="/delimeterSearch/delimitedSearch" method="post">
+        <span>Delimited Search</span>
+        <input type="text" name="searchq" placeholder="Enter query to search...." value="<%=query%>">
+        <input type="submit" value="search">
+    </form>
+</div>

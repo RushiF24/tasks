@@ -16,7 +16,7 @@ router.get('/students/:pageno?', (req, res) => {
         let startingRow = no_of_records_per_page * pageno - no_of_records_per_page;
         pageno = Number(pageno)
 
-let forw = 'students'
+let forw = 'search'
 
         if (pageno > total_no_of_pages || pageno < 1) {
             res.end('page not found')

@@ -61,7 +61,11 @@
             font-size: 30px;
         }
 
-        .pagination {
+        .pagination,.delimeter {
+            display: flex;
+            /* flex-direction: column; */
+            justify-content: center;
+            align-items: center;
             margin: 12px;
         }
 
@@ -108,11 +112,22 @@
     </select>
     <a href="/studentsExamAttendenceReport/examReport">examReport</a>
     <h3>Total no of Records: <%=total%>
-            </h2>
-            <%- include('./search.ejs'); %> 
-            <%if (forw != 'search') {%>
-                <%- include('./pagination.ejs'); %>
+            </h3>
+            <h1>ddf <%=forw%></h1>
+            <%if (forw == 'search') {%>
+                <%- include('./search.ejs'); %> 
                 <%}%>
+
+                <%if (forw != 'delimitedSearch') {%>
+                <div class="pagination">
+
+                    <%- include('./pagination.ejs'); %>
+                </div>
+                <%}%>
+                    <div class="delimeter">
+
+                        <%- include('../delimitedSearch/delimitedSearch.ejs') %>
+                    </div>
                 <div>
 
                     <table id="tableId">
