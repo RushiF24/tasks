@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 1200px;
+            background-color: #a6c5c8;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            background-color: skyblue;
+            border-collapse: collapse;
+        }
+
+        th a {
+            cursor: pointer;
+            color: black;
+        }
+
+        td {
+            padding: 4px;
+        }
+
+        .result {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tableDiv {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+        }
+
+        #pageCnt {
+            text-align: center;
+            width: 70px;
+            font-size: 30px;
+        }
+
+        .pagination {
+            margin: 12px;
+        }
+
+        .start,
+        .end {
+            padding: 12px;
+            margin: 0 12px;
+        }
+
+        .leftBtn,
+        .rightBtn {
+            padding: 12px;
+        }
+
+        .search {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .search div {
+            display: flex;
+            flex-direction: column;
+            height: 58px;
+        }
+        .showMoreBtn {
+            width: 10%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Rushikesh Falak - 24DEV059</h1>
+    <h2>Table with 200 student data</h2>
+    <label for="months">Choose month:</label>
+
+    <select id="months" onchange="monthChange(value)">
+        <option value="12">Dec - 2023</option>
+        <option value="1">Jan - 2024</option>
+        <option value="2">Feb - 2024</option>
+    </select>
+    <a href="/studentsExamAttendenceReport/examReport">examReport</a>
+    <h3>Total no of Records: <%=total%>
+            </h2>
+            <%- include('./search.ejs'); %> 
+            <%if (forw != 'search') {%>
+                <%- include('./pagination.ejs'); %>
+                <%}%>
+                <div>
+
+                    <table id="tableId">
+                        <% for(let val of data) {%>
+                            <%const fieldKeys=Object.keys(val); %>
+                                <tr>
+
+                                    <%for(var i=0;i<fieldKeys.length; i++) {%>
+                                        <th>
+                                            <%=fieldKeys[i]%>
+                                        </th>
+                                        <% } %>
+
+                                </tr>
+                                <% break; %>
+                                <% } %>
+                        <% for(let key of data) {%>
+                            <%const fieldValues=Object.values(key); %>
+                                <tr>
+
+                                    <%for(var i=0;i<fieldValues.length; i++) {%>
+                                        <td>
+                                            <%=fieldValues[i]%>
+                                        </td>
+                                        <% } %>
+
+                                </tr>
+                                <% } %>
+                    </table>
+
+                </div>  
+
+</body>
+<script>
+    const monthChange = (value) => {
+        // let selectEl = document.querySelector('#month');
+       
+        window.location.href =  "/studentsExamAttendenceReport/students/1?month="+value;
+        // window.location.reload();
+    }
+
+    const mon = document.querySelector('#months');
+    mon.value = `<%=month%>`;
+    const orderChange = (event) => {
+        field = event.target.innerText.split(' ')[0]
+        url = window.location.href;
+        if (url.includes('asc')) {
+            window.location.href = '/<%=forw%>/<%=pageno%>?orderby=' + field + '&orderdir=desc';
+        }
+        else {
+            window.location.href = '/<%=forw%>/<%=pageno%>?orderby=' + field + '&orderdir=asc';
+        }
+    }   
+    const toggleFilters = () => {
+        let showMoreEl = document.getElementById('moreFilters')
+
+        if (showMoreEl.style.display === "block") {
+            showMoreEl.style.display = "none"
+        } else {
+            showMoreEl.style.display = "block"
+        }
+    }
+</script>
+
+</html>

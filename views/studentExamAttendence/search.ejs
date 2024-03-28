@@ -1,0 +1,28 @@
+<div class="search">
+    <div>
+        <form action="/studentsExamAttendenceReport/search" method="post">
+            <input type="text" name="student_id" placeholder="student_id" required>
+            <input type="submit" value="search">
+        </form>
+    </div>
+    <div class="showMoreBtn">
+        <button onclick="toggleFilters()">Show more</button>
+    </div>
+    <div id="moreFilters">
+
+        <form action="/studentsExamAttendenceReport/filterSearch" method="post">
+            <input type="text" name="fname" placeholder="first name">
+            <input type="text" name="lname" placeholder="last name">
+            <input type="text" name="pr" placeholder="Percentage">%
+
+            <label for="type">Choose Type:</label>
+
+            <select id="type" name="type">
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+            </select>
+            <input type="submit" value="search">
+        </form>
+
+    </div>
+</div>

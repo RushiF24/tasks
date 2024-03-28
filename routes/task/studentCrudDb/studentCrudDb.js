@@ -5,8 +5,6 @@ const db = require('../../../db')
 router.get('/students/:pageno?', (req, res) => {
     try {
         let pageno = req.params.pageno||'1';
-        console.log('hifdg333',pageno);
-
 
         let no_of_records_per_page = 200;
         let total_no_of_records = 50000;

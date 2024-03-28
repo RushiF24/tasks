@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Students</title>
+    <style>
+        body {
+            margin: 0 auto;
+            max-width: 1200px;
+            background-color: #02e7ff;
+        }
+
+        table {
+            margin: 0 auto;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            background-color: skyblue;
+            border-collapse: collapse;
+            padding: 10px;
+        }
+
+        th,
+        td {
+            text-align: center;
+        }
+
+        div {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        h3 {
+            text-align: right;
+        }
+
+        #pageCnt {
+            text-align: center;
+            width: 70px;
+            font-size: 30px;
+        }
+
+        .pagination {
+            margin: 12px;
+        }
+
+        .start,
+        .end {
+            padding: 12px;
+            margin: 0 12px;
+        }
+
+        .leftBtn,
+        .rightBtn {
+            padding: 12px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Rushikesh Falak - 24DEV059</h1>
+    <h2>Table with 200 student data</h2>
+
+            </h2>
+            <div>
+                <%let sum=0 %>
+
+                    <table id="tableId">
+                        <tr>
+                            <th></th>
+                            <th colspan="2">Prelim</th>
+                            <th colspan="2">Terminal</th>
+                            <th colspan="2">Final</th>
+
+                        </tr>
+                        <% for(let val of data) {%>
+                            <%const fieldKeys=Object.keys(val); %>
+                                <tr>
+
+                                    <%for(var i=0;i<fieldKeys.length; i++) {%>
+                                        <th>
+                                            <%=fieldKeys[i]%>
+                                        </th>
+                                        <% } %>
+                                </tr>
+                                <% break; %>
+                        <% } %>
+
+                        <% for(let key of data) {%>
+                            <%const fieldValues=Object.values(key); %>
+                            <tr>
+                            <%for(var i=0;i<fieldValues.length; i++) {%>
+                                <td>
+                                    <%=fieldValues[i]%>
+                                </td>
+                                <% } %>
+
+                            </tr>
+                            <%sum +=fieldValues[fieldValues.length-1]%>
+                            <% } %>
+                            <%console.log(sum)%>
+                            <tr>
+                                <td colspan="7">Sum</td>
+                                <td><%=sum%></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Percentage</td>
+                                <td><%=parseFloat((sum/1200)*100).toFixed(2)%>%</td>
+                            </tr>
+                    </table>
+                </div>
+                <a href="/studentsExamAttendenceReport/examReport">Back to Result</a>
+
+</body>
+
+</html>

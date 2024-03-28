@@ -1,0 +1,23 @@
+<div class="pagination">
+
+    <%if(pageno==1) {%>
+        <a href="/"><button disabled class="start"> &lt;&lt;</button></a>
+        <a href="/"><button disabled onclick="left()" class="leftBtn">&lt;</button> </a>
+        <%} else {%>
+            <a href="/studentsExamAttendenceReport/students/1"><button class="start"> &lt;&lt;</button></a>
+            <a href="/studentsExamAttendenceReport/students/<%=pageno-1%>?month=<%=month%>"><button onclick="left()" class="leftBtn">&lt;</button></a>
+            <% } %>
+
+                <span id="pageCnt">
+                    <%=pageno%>
+                </span>
+
+                <%if(pageno==totalPage) {%>
+                    <a href="/"><button disabled onclick="right()" class="rightBtn">&gt;</button></a>
+                    <a href="/"><button disabled class="end"> &gt;&gt;</button></a>
+                    <%} else {%>
+                        <a href="/studentsExamAttendenceReport/students/<%=pageno+1%>?month=<%=month%>"><button onclick="right()" class="rightBtn">&gt;</button></a>
+                        <a href="/studentsExamAttendenceReport/students/<%=totalPage%>"><button class="end"> &gt;&gt;</button></a>
+                        <% } %>
+
+</div>

@@ -47,6 +47,8 @@ app.use('/students', require('./routes/task/studentCrudFileSys/studentCrudFileSy
 
 app.use('/studentsdb', require('./routes/task/studentCrudDb/studentCrudDb'))
 
+app.use('/studentsExamAttendenceReport', require('./routes/task/studentsExamAttendence/studentsExamAttendence'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })
