@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Posts</title>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            background-color: rgb(209, 231, 240);
+        }
+
+        td {
+            /* padding: 12px; */
+            height: 12px;
+        }
+
+        #leftBtn,
+        #rightBtn {
+            width: 50px;
+            height: 50px;
+            margin: 10px 40px;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h3>Rushikesh Falak - 24DEV059</h3>
+        <div class="pagination">
+
+            <button onclick="pagination('left')" id="leftBtn">&lt;</button>
+            <span id="pageno"></span>
+            <button onclick="pagination('right')" id="rightBtn">&gt;</button>
+        </div>
+        <input type="text" name="search" id="search" placeholder="search here...  " oninput="onsearch(this.value)">
+        <!-- <input type="text" name="search" id="search" placeholder="search here...  " onkeyup="onsearch(this.value)"> -->
+        <table id="tableId"></table>
+    </div>
+</body>
+<script>
+    let object = {}
+    let page = 1
+    let currObj ;
+ 
+    document.getElementById('pageno').innerHTML = page
+    if (page == 1) {
+        document.getElementById('leftBtn').disabled = true
+    }
+
+    if (page == 10) {
+        document.getElementById('rightBtn').disabled = true
+    }
+
+    function pagination(direction) {
+        if (direction == 'left') {
+            page -= 1
+            document.getElementById('pageno').innerHTML = page
+            if (page == 1) {
+                document.getElementById('leftBtn').disabled = true
+            }
+            else {
+                document.getElementById('rightBtn').disabled = false
+            }
+
+            createTable(object, page)
+        }
+        else if (direction == 'right') {
+            page += 1
+            document.getElementById('pageno').innerHTML = page
+            if (page == 10) {
+                document.getElementById('rightBtn').disabled = true
+            }
+            else {
+                document.getElementById('leftBtn').disabled = false
+            }
+            createTable(object, page)
+
+        }
+
+    }
+
+    function createTable(data, pageno) {
+        // console.log('sd',Object.keys(data[0]));  
+
+        const keys = Object.keys(data[0]);
+        let temp = "<tr> <th>views</th>";
+        keys.map((el) => {
+            temp = temp + "<th>" + el + "</th>"
+        })
+        temp += "</tr>"
+
+        let vals = data;
+        vals = vals.slice(((pageno - 1) * 10), pageno * 10)
+        let temp2 = "<tr>";
+
+
+        vals.map((el) => {
+            let valsLis = Object.values(el)
+            console.log('ds',valsLis);
+            temp2 += `<td> <a href='/jsonplaceholder/posts/${valsLis[0]}'>view deatil</a> </td>`
+            valsLis.map((el2) => {
+                temp2 = temp2 + "<td>" + el2.toString().substring(0, 60) + "</td>"
+            })
+            temp2 += "</tr>"
+        })
+
+        document.getElementById('tableId').innerHTML = temp + temp2
+    }
+
+    const res = fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => { return response.json() })
+        .then(data => {
+            console.log('aa data',data);
+            object = data
+            createTable(data, 1)
+        })
+    async function onsearch(key) {
+        let searchres = await search(key)
+        let arr = searchres;
+
+
+        const keys = Object.keys(arr[0]);
+        temp = "<tr> <th>views</th>";
+        keys.map((el) => {
+            temp = temp + "<th>" + el + "</th>"
+        })
+
+
+
+        temp += "</tr>"
+
+
+        let vals = arr;
+        // vals = vals.slice(((pageno - 1) * 10), pageno * 10)
+        let temp2 = "<tr>";
+
+
+        vals.map((el) => {
+            let valsLis = Object.values(el)
+            temp2 += `<td> <a href='/posts/${valsLis[0]}'>view deatil</a> </td>`
+            valsLis.map((el2) => {
+                temp2 = temp2 + "<td>" + el2.toString().substring(0, 60) + "</td>"
+            })
+            temp2 += "</tr>"
+        })
+
+        document.getElementById('tableId').innerHTML = temp + temp2
+
+    }
+    const search = (searchkey) => {
+        return object.filter(obj => Object.keys(obj).some(key => obj[key].toString().includes(searchkey)))
+
+    }
+
+    
+    // function onsearch(key) {
+    //     var input, filter, table, tr, td, i, txtValue;
+    //     // input = document.getElementById("search");
+    //     input = key
+    //     console.log(input);
+    //     filter = input;
+    //     table = document.getElementById("tableId");
+    //     tr = table.getElementsByTagName("tr");
+    //     console.log(tr);
+    //     for (i = 0; i < tr.length; i++) {
+    //         console.log(i,tr[i]);
+    //         for(let j = 0;j<13;j++){
+
+    //             td = tr[i].getElementsByTagName("td")[j] ;
+    //             if (td) {    
+    //                 // console.log('thi',td);
+    //                 txtValue = td.textContent || td.innerText || td.innerHTML;
+    //                 if (txtValue.indexOf(filter) > -1) {
+    //                     // console.log('d',txtValue,txtValue.indexOf(filter),tr[i]); 
+    //                     // console.log(); 
+    //                     tr[i].style.display = "";
+    //                     break;
+    //                 } else {
+    //                     // console.log(i,tr[i],'aa none che');
+    //                     tr[i].style.display = "none";
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
+</script>
+
+</html>

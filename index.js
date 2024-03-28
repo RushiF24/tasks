@@ -55,6 +55,10 @@ app.use('/jobapplicationform', require('./routes/task/jobapplicationform/jobappl
 
 app.use('/jobapplicationajax', require('./routes/task/jobapplicationajax/jobapplicationajax'))
 
+app.use('/jsonplaceholder', require('./routes/task/jsonplaceholder/jsonplaceholder'))
+
+app.use('/timezone', require('./routes/task/timezone/timezone'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })
