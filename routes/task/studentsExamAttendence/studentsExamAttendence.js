@@ -161,23 +161,23 @@ router.post('/filterSearch', (req, res) => {
 
         if (type == 'and') {
             filterdSearchStudentsQuery = `select student_master_200.student_id,student_master_200.first_name,student_master_200.last_name, count(attendence) as Attendence, 
-    (count(attendence)/(select count(distinct date) from student_attendence))*100 as Percentage
-    from student_master 
-    inner join student_attendence 
-    where student_master_200.student_id = student_attendence.student_id and student_attendence.attendence='P' and student_master_200.first_name like '%${fname}%' and student_master_200.last_name like '%${lname}%' group by student_id having (count(attendence)/(select count(distinct date) from student_attendence))*100 >= '${pr}' `;
+            (count(attendence)/(select count(distinct date) from student_attendence))*100 as Percentage
+            from student_master_200
+            inner join student_attendence 
+            where student_master_200.student_id = student_attendence.student_id and student_attendence.attendence='P' and student_master_200.first_name like '%${fname}%' and student_master_200.last_name like '%${lname}%' group by student_id having (count(attendence)/(select count(distinct date) from student_attendence))*100 >= '${pr}' `;
         }
         else {
             filterdSearchStudentsQuery = `select student_master_200.student_id,student_master_200.first_name,student_master_200.last_name, count(attendence) as Attendence, 
-    (count(attendence)/(select count(distinct date) from student_attendence))*100 as Percentage
-    from student_master 
-    inner join student_attendence 
-    where student_master_200.student_id = student_attendence.student_id and student_attendence.attendence='P' and (student_master_200.first_name like '%${fname}%' or student_master_200.last_name like '%${lname}%') group by student_id having (count(attendence)/(select count(distinct date) from student_attendence))*100 >= '${pr}' `;
+            (count(attendence)/(select count(distinct date) from student_attendence))*100 as Percentage
+            from student_master_200
+            inner join student_attendence 
+            where student_master_200.student_id = student_attendence.student_id and student_attendence.attendence='P' and (student_master_200.first_name like '%${fname}%' or student_master_200.last_name like '%${lname}%') group by student_id having (count(attendence)/(select count(distinct date) from student_attendence))*100 >= '${pr}' `;
         }
 
         db.query(filterdSearchStudentsQuery, (err, result) => {
             if (err) throw err;
             console.log("My SQL Connected via a new open connection.");
-            res.render('allStudents', { data: result, pageno: pageno, total: total_no_of_records, month: month, totalPage: total_no_of_pages, forw: forw, query: month })
+            res.render('studentExamAttendence/allStudents', { data: result, pageno: pageno, total: total_no_of_records, month: month, totalPage: total_no_of_pages, forw: forw, query: month })
         })
 
     }

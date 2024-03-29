@@ -11,13 +11,13 @@ const authMiddleware = async (req, res, next) => {
         jwt.verify(authHeader, JWT_SECERET, (err, payload) => {
             console.log("payload",payload);
             if (err) {
-                res.render('login', { err: "not authorized" })
+                res.render('login/login', { err: "not authorized" })
             }
             next();
         })
     }
     else {
-        res.render('login', { err: "not authorized" })
+        res.render('login/login', { err: "not authorized login again" })
     }
 }
 

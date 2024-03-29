@@ -6,7 +6,7 @@ const db = require('../../../db')
 router.get('/', (req, res) => {
     try {
         console.log('dd44444');
-        res.render('timezone');
+        res.render('timezone/timezone');
     }
     catch (error) {
         res.write("Try again")

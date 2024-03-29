@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time Zone</title>
+</head>
+
+<body>
+   <label for="timezone">Choose  TimeZone</label>
+<select name="timezone" id="timezone" onchange="changetimezone()">
+    <option value="" selected>--select City</option>
+    <option value="Asia/Kolkata">Ahmedabad</option>
+    <option value="America/Los_Angeles">Los Angles</option>
+    <option value="Asia/Dhaka">Dhaka</option>
+    <option value="Europe/Moscow">Moscow</option>
+    <option value="Asia/Tokyo">Tokyo</option>
+</select>
+<h2 id="currenttime"></h2>
+<h2 id="resulttime"></h2>
+  
+</body>
+<script>
+let time = document.getElementById("time")
+
+function changetimezone() {
+    setInterval(changetimezone, 1000);
+    const date = new Date();
+    let time = document.getElementById("timezone")
+    let text = date.toLocaleString('en-US',{timeZone : time.value});
+    let currTime = new Date().toLocaleString('en-US',{timeZone :'Asia/Kolkata'})
+    document.getElementById("currenttime").innerText = "Current Time :" + currTime
+    document.getElementById("resulttime").innerText ='Current Time('+time.value+') :'+ text
+}
+
+</script>
+</html>

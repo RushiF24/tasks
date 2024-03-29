@@ -116,7 +116,7 @@ router.all('/loginform', verifyLoginMiddleware,(req,res) => {
                                         let authToken = jwt.sign(req.body.email, process.env.TOKEN_SECRET);
                                         // console.log(authToken);
                                         localStorage.setItem("authToken",authToken);
-                                        res.redirect(`/user/welcome?email=${req.body.email}`)
+                                        res.redirect(`/user/welcome`)
                                     }
                                 }
                             })

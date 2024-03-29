@@ -4,9 +4,10 @@ const nodemailer = require('nodemailer')
 const crypto = require('crypto')
 const bcrypt = require("bcrypt")
 const md5 = require('md5');
+const {authMiddleware,verifyLoginMiddleware}=require('../../midlleware/auth')
 
 const db = require('../../db')
-router.get('/',(req, res) => {
+router.get('/',verifyLoginMiddleware,(req, res) => {
         // console.log(db);
         // res.render('timezone')
         res.render('./registration/registration_form', { err: '' })
