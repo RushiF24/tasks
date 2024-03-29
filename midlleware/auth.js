@@ -2,7 +2,7 @@ const localStorage = require("localStorage")
 const jwt = require('jsonwebtoken');
 const JWT_SECERET = process.env.TOKEN_SECRET
 
-
+//verify if users token (if yes then only allowed to aceess respective functionality)
 const authMiddleware = async (req, res, next) => {
     const authHeader = localStorage.getItem("authToken")
     console.log('auth', authHeader);
@@ -21,7 +21,7 @@ const authMiddleware = async (req, res, next) => {
     }
 }
 
-//check if user is not logged in(if yes then redirect to login or register pages)
+//check if user is not logged in(if yes then redirect to login or register pages otherwise in user page)
 const verifyLoginMiddleware = async (req,res,next) => {
     const authHeader = localStorage.getItem("authToken")
     if (authHeader == null) {

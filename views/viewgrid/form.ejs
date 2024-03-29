@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" href="/style.css">
+
+</head>
+
+<body>
+
+	<form action="/viewgrid/serveQuery/" method="post">
+		<fieldset class="formbg">
+			<legend>
+				<h2>Query Box</h2>
+			</legend>
+
+			<div>
+				<h4>Examples:</h4>
+				
+				<p>select * from student_master</p>
+				<p>select * from exam_result</p>
+				<p>select * from student_attendence</p>
+				<p>select student_master.student_id,student_master.first_name, count(attendence) as Attendence,
+					(count(attendence)/(select count(distinct date) as Percentage from student_attendence where month(date) =
+					'1'))*100
+					from student_master
+					inner join student_attendence
+					where student_master.student_id = student_attendence.student_id and month(date) = '1' and
+					student_attendence.attendence='P' group by student_id</p>
+			</div>
+
+			<label for="query">Enter Your SQL Query: </label>
+			<textarea name="query" id="" cols="40" rows="5" required></textarea>
+
+
+			<br>
+			&emsp;
+			<br>
+
+			<input type="submit" value="submit">
+		</fieldset>
+	</form>
+	<a href="/students">See all students</a>
+	<br>
+	<a href="/examReport">See Results</a>
+	
+</body>
+
+</html>

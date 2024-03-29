@@ -35,31 +35,34 @@ app.use('/logout', require('./routes/logout/logout'))
 
 app.use('/user', require('./routes/user/user'))
 
-app.use('/dynamic_table', require('./routes/task/dynamicTable/dynamic_table'))
-app.use('/kukucube', require('./routes/task/kukucube/kukucube'))
-app.use('/tictactoe', require('./routes/task/tictactoe/tictactoe'))
+app.use('/dynamic_table', authMiddleware,require('./routes/task/dynamicTable/dynamic_table'))
+app.use('/kukucube', authMiddleware,require('./routes/task/kukucube/kukucube'))
+app.use('/tictactoe', authMiddleware,require('./routes/task/tictactoe/tictactoe'))
 
-app.use('/html1', require('./routes/task/html1/html1'))
-app.use('/html2', require('./routes/task/html2/html2'))
-app.use('/html3', require('./routes/task/html3/html3'))
+app.use('/html1', authMiddleware, require('./routes/task/html1/html1'))
+app.use('/html2', authMiddleware, require('./routes/task/html2/html2'))
+app.use('/html3', authMiddleware, require('./routes/task/html3/html3'))
 
-app.use('/students', require('./routes/task/studentCrudFileSys/studentCrudFileSys'))
+app.use('/students', authMiddleware, require('./routes/task/studentCrudFileSys/studentCrudFileSys'))
 
-app.use('/studentsdb', require('./routes/task/studentCrudDb/studentCrudDb'))
+app.use('/studentsdb', authMiddleware, require('./routes/task/studentCrudDb/studentCrudDb'))
 
-app.use('/studentsExamAttendenceReport', require('./routes/task/studentsExamAttendence/studentsExamAttendence'))
+app.use('/studentsExamAttendenceReport', authMiddleware, require('./routes/task/studentsExamAttendence/studentsExamAttendence'))
 
-app.use('/delimeterSearch', require('./routes/task/delimeteSearch/delimeteSearch'))
+app.use('/delimeterSearch', authMiddleware, require('./routes/task/delimeteSearch/delimeteSearch'))
 
-app.use('/jobapplicationform', require('./routes/task/jobapplicationform/jobapplicationform'))
+app.use('/jobapplicationform', authMiddleware, require('./routes/task/jobapplicationform/jobapplicationform'))
 
-app.use('/jobapplicationajax', require('./routes/task/jobapplicationajax/jobapplicationajax'))
+app.use('/jobapplicationajax', authMiddleware, require('./routes/task/jobapplicationajax/jobapplicationajax'))
 
-app.use('/jsonplaceholder', require('./routes/task/jsonplaceholder/jsonplaceholder'))
+app.use('/jsonplaceholder', authMiddleware, require('./routes/task/jsonplaceholder/jsonplaceholder'))
 
-app.use('/timezone', require('./routes/task/timezone/timezone'))
+app.use('/timezone', authMiddleware, require('./routes/task/timezone/timezone'))
 
-app.use('/event', require('./routes/task/event/event'))
+app.use('/event', authMiddleware, require('./routes/task/event/event'))
+
+app.use('/viewgrid', authMiddleware, require('./routes/task/viewgrid/viewgrid'))
+
 app.all("*", (req, res) => {
     res.send("Not Found &#128549;")
 })

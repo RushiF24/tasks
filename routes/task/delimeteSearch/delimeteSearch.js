@@ -29,7 +29,7 @@ router.get('/students/:pageno?', (req, res) => {
         db.query(getAllStudentsQuery, (err, result) => {
             if (err) throw err;
             console.log("My SQL Connected via a new open connection.");
-            res.render('studentExamAttendence/allStudents', { data: result, pageno: pageno,forw:forw, total: total_no_of_records, month:month,totalPage:total_no_of_pages,query:month })
+            res.render('studentExamAttendence/allStudents', { data: result, pageno: pageno,forw:forw, total: total_no_of_records, month:month,totalPage:total_no_of_pages,query:'' })
         })
 
     }

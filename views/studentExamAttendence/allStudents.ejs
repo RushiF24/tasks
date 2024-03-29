@@ -112,8 +112,9 @@
     </select>
     <a href="/studentsExamAttendenceReport/examReport">examReport</a>
     <h3>Total no of Records: <%=total%>
-            </h3>
-            <h1>ddf <%=forw%></h1>
+    </h3>
+    <a href="/user/welcome">Back</a>
+            <h1><%=forw%></h1>
             <%if (forw == 'search') {%>
                 <%- include('./search.ejs'); %> 
                 <%}%>
@@ -124,10 +125,12 @@
                     <%- include('./pagination.ejs'); %>
                 </div>
                 <%}%>
+                <%if (forw == 'delimitedSearch') {%> 
                     <div class="delimeter">
 
                         <%- include('../delimitedSearch/delimitedSearch.ejs') %>
                     </div>
+                    <%}%>
                 <div>
 
                     <table id="tableId">
