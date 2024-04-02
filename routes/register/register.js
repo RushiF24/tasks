@@ -17,7 +17,7 @@ router.post('/register' ,(req, res) => {
     try {
         let activation_code = crypto.randomBytes(12).toString('hex')
         // inserting data into database
-        console.log(activation_code);
+        // console.log(activation_code);
         // var transporter = nodemailer.createTransport({
         //     service: 'gmail',
         //     auth: {
@@ -65,12 +65,12 @@ router.post('/register' ,(req, res) => {
 })
 router.get('/verify', (req, res) => {
     try {
-        console.log(req.query.email, req.query.verifycode);
+        // console.log(req.query.email, req.query.verifycode);
         let code= req.query.verifycode;
         let verifyQuery = `select * from users where email = '${req.query.email}' and activation_code = '${req.query.verifycode}'`
-        console.log(verifyQuery);
+        // console.log(verifyQuery);
         db.query(verifyQuery, (err, result) => {
-            console.log('verify res',result);
+            // console.log('verify res',result);
             if (result.length == 0) {
                 res.render('./registration/verify', { email: req.query.email, err: "please enter valid verification code",code:code, expire: false })
             }
@@ -80,13 +80,13 @@ router.get('/verify', (req, res) => {
                 let current = new Date()
 
                 let diff = Math.abs(current - registerd_time)
-                console.log(diff)
+                // console.log(diff)
 
                 if (diff < 3600000) {
 
                     let activeUpdateQuery = `update users set active = '1' where email='${req.query.email}'`
                     // let activeUpdateQuery = `update users set active = '1' where email='${req.body.email}`
-                    console.log('dfrt', activeUpdateQuery);
+                    // console.log('dfrt', activeUpdateQuery);
                     db.query(activeUpdateQuery, (err, result) => {
                         return res.render('./password/confirmPassword', { email: req.query.email, is_forgot: false })
                     })
@@ -105,10 +105,10 @@ router.get('/verify', (req, res) => {
 
 router.post('/activation_code', (req, res) => {
     try {
-        console.log(req.body);
+        // console.log(req.body);
         let activation_code = crypto.randomBytes(12).toString('hex')
         let activation_updateQ = `update users set activation_code = '${activation_code}' where email='${req.body.email}';`
-        console.log(activation_updateQ);
+        // console.log(activation_updateQ);
         db.query(activation_updateQ, (err, result) => {
             if (err) throw err
             return res.status(200).json({ activation_code: activation_code });
@@ -130,7 +130,7 @@ router.post('/createPassword', async (req, res) => {
         let encryptedPassword = md5(password + salt_key)
 
         let insertLogin = `insert into users_login (email,password,pw_salt) values ('${req.body.email}', '${encryptedPassword}', '${salt_key}')`
-        console.log('insert login query', insertLogin);
+        // console.log('insert login query', insertLogin);
         db.query(insertLogin, (err, result) => {
             res.redirect('/login/loginform')
         })

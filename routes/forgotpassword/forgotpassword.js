@@ -19,10 +19,10 @@ router.all('/', async (req, res) => {
             let encryptedPassword = md5(password + salt_key)
 
             let updatePasswordQ = `update users_login set password = '${encryptedPassword}',pw_salt='${salt_key}' where email='${req.body.email}';`
-            console.log('update password when forgot query', updatePasswordQ);
+            // console.log('update password when forgot query', updatePasswordQ);
             db.query(updatePasswordQ, (err, result) => {
                 res.redirect('/login/loginform')
-                console.log('cvcvc ', JSON.stringify(result), err);
+                // console.log('cvcvc ', JSON.stringify(result), err);
             })
         }
     } catch (error) {
@@ -44,11 +44,11 @@ router.post('/verify_forgot_password', (req, res) => {
 
 router.get('/verifyUser', (req, res) => {
     try {
-        console.log(req.query.email, req.query.verifycode);
+        // console.log(req.query.email, req.query.verifycode);
         let verifyQuery = `select * from users where email = '${req.query.email}' and activation_code = '${req.query.verifycode}'`
-        console.log(verifyQuery);
+        // console.log(verifyQuery);
         db.query(verifyQuery, (err, result) => {
-            console.log(result);
+            // console.log(result);
             if (result.length == 0) {
                 res.render('verifyToken', { email: req.body.email, err: "please enter valid verification code", expire: false })
             }
@@ -58,13 +58,13 @@ router.get('/verifyUser', (req, res) => {
                 let current = new Date()
 
                 let diff = Math.abs(current - registerd_time)
-                console.log(diff)
+                // console.log(diff)
 
                 if (diff < 3600000) {
 
                     // let activeUpdateQuery = `update users set active = '1' where email='${req.body.email}'`
                     let activeUpdateQuery = `update users set active = '1' where email='${req.query.email}'`
-                    console.log(activeUpdateQuery);
+                    // console.log(activeUpdateQuery);
                     db.query(activeUpdateQuery, (err, result) => {
                         return res.render('./password/confirmPassword', { email: req.query.email, is_forgot: true })
                     })

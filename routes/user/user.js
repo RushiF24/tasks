@@ -7,7 +7,7 @@ router.get('/welcome', authMiddleware,(req, res) => {
     try {
         // let getdataQ = `select * from users where email='${req.query.email}'`
         let gettaskdataQ = `select * from task_table;`
-        console.log(gettaskdataQ);
+        // console.log(gettaskdataQ);
         db.query(gettaskdataQ, (err, result) => {
             // console.log(result);
             res.render('userpages/taskTable',{data:result})

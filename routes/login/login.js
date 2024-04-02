@@ -82,11 +82,11 @@ router.all('/loginform', verifyLoginMiddleware,(req,res) => {
         else{
             try {
                 let password = req.body.password;
-                console.log(password);
+                // console.log(password);
                 let salt_keyquery = `select pw_salt from users_login where email='${req.body.email}'`
                 // console.log(salt_keyquery);
                 db.query(salt_keyquery, (err, result) => {
-                    console.log(result);
+                    // console.log(result);
                     if (err) {
                         let success = false
                         return res.status(400).json({ success, err: err })
@@ -103,7 +103,7 @@ router.all('/loginform', verifyLoginMiddleware,(req,res) => {
                             // let authQuery = `select * from users_login where email='${req.body.email}' and password=` + password
                             // let authQuery = `select * from users_login where  password=${password} and  email='${req.body.email}'`
         
-                            console.log("authQuery:" , authQuery);
+                            // console.log("authQuery:" , authQuery);
                             db.query(authQuery, (err, result) => {
                                 // console.log("result" + JSON.stringify(result));
         

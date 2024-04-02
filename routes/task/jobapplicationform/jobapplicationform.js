@@ -209,7 +209,7 @@ router.get('/candidates', (req,res) => {
         // let getdataq = `select * from basic_details `
         // let q2= `select * from educational_details2 where candidate_id = '${req.params.id}';`
         // console.log(q2);
-        console.log('all candidis ',getdataq);
+        // console.log('all candidis ',getdataq);
             db.query(getdataq, (err,result) => {
                 // console.log('HERE',result);
                 // console.log(result[0][0].dob);

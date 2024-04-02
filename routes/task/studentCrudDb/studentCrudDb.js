@@ -2,6 +2,10 @@ const express = require('express')
 const router = express.Router()
 const db = require('../../../db')
 
+router.get('/', (req, res) => {
+    res.render('studentCrudDb/form')
+})
+
 router.get('/students/:pageno?', (req, res) => {
     try {
         let pageno = req.params.pageno||'1';
@@ -34,6 +38,30 @@ router.get('/students/:pageno?', (req, res) => {
         res.write("Try again for student crud db")
         return res.end()
     }
+})
+router.post('/addStudent', (req, res) => {
+    try {
+        // console.log(req.body);
+
+        let inserQuery = `insert into student_master (firstname,lastname, age, number,  email,gender,hobbies,address) values ('${req.body.fname}', '${req.body.lname}', '${req.body.age}', '${req.body.phoneNumber}', '${req.body.email}', '${req.body.gender}', '${req.body.hobbies}', '${req.body.address}')`;
+
+
+        db.query(inserQuery, (err, result) => {
+            if (err) throw err;
+            console.log("My SQL Connected via a new open connection.");
+            res.send('Data received.');
+        });
+
+        // db.end((err => {
+        //     if(err) throw err;
+        //     console.log("Connection closed.");
+        // }));
+    }
+    catch (error) {
+        res.write("Try again")
+        return res.end()
+    }
+
 })
 
 module.exports = router

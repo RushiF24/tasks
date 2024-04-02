@@ -196,12 +196,24 @@ router.post('/preferances', (req, res) => {
 
 router.get('/candidates',(req, res) => {
     try {
+        let pageno = req.params.pageno||'1';
+        
+        let no_of_records_per_page = 200;
+        let total_no_of_records = 50000;
+        let total_no_of_pages = total_no_of_records / no_of_records_per_page;
+        let startingRow = no_of_records_per_page * pageno - no_of_records_per_page;
+        pageno = Number(pageno)
+        let month = req.query.month || '1';
+        
+        let orderByfield = req.query.orderby || 'student_id';
+        let orderdir = req.query.orderdir || 'asc'
+        let forw = 'candidates'
         let getdataq = `select * from basic_details `
 
         console.log(getdataq);
         db.query(getdataq, (err, result) => {
             console.log('H',result);
-            res.render('allCandidates', { data: result,mode:'update'})
+            res.render('studentExamAttendence/allStudents', { data: result,mode:'update',pageno: pageno,forw:forw, total: total_no_of_records, month:month,totalPage:total_no_of_pages,query:''})
         })
     }
     catch (error) {
