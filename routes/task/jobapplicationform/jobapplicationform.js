@@ -189,7 +189,39 @@ router.post('/addCandidate', (req, res) => {
 
 })
 
-
+router.get('/candidates', (req,res) => {
+    try{
+        // let getdataq = `select * from basic_details where candidate_id = '${req.params.id}'; select * from educational_details2 where where candidate_id = '${req.params.id}';`
+        // let getdataq = `select * from basic_details where candidate_id = '${req.params.id}';`
+        let pageno = req.params.pageno||'1';
+        
+        let no_of_records_per_page = 200;
+        let total_no_of_records = 50000;
+        let total_no_of_pages = total_no_of_records / no_of_records_per_page;
+        let startingRow = no_of_records_per_page * pageno - no_of_records_per_page;
+        pageno = Number(pageno)
+        let month = req.query.month || '1';
+        
+        let orderByfield = req.query.orderby || 'student_id';
+        let orderdir = req.query.orderdir || 'asc'
+        let forw = 'candidates'
+        let getdataq = `select candidate_id,first_name,last_name,email,phone_number from basic_details;`
+        // let getdataq = `select * from basic_details `
+        // let q2= `select * from educational_details2 where candidate_id = '${req.params.id}';`
+        // console.log(q2);
+        console.log('all candidis ',getdataq);
+            db.query(getdataq, (err,result) => {
+                // console.log('HERE',result);
+                // console.log(result[0][0].dob);
+                // res.render('job_application_form2_update',{data:result})
+                res.render('studentExamAttendence/allStudents',{data:result,pageno: pageno,forw:forw, total: total_no_of_records, month:month,totalPage:total_no_of_pages,query:''})
+            })
+    }
+    catch(error){
+        res.write("Try again")
+        return res.end()
+    }
+})
 
 router.get('/candidate/:id', (req,res) => {
     try{

@@ -21,9 +21,9 @@
 				<p>select * from student_master</p>
 				<p>select * from exam_result</p>
 				<p>select * from student_attendence</p>
-				<p>select student_master.student_id,student_master.first_name, count(attendence) as Attendence,
+				<p>select student_master.student_id,student_master.first_name as FirstName, count(attendence) as Attendence,
 					(count(attendence)/(select count(distinct date) as Percentage from student_attendence where month(date) =
-					'1'))*100
+					'1'))*100 as AverageAttendence
 					from student_master
 					inner join student_attendence
 					where student_master.student_id = student_attendence.student_id and month(date) = '1' and
@@ -43,7 +43,7 @@
 	</form>
 	<a href="/students">See all students</a>
 	<br>
-	<a href="/examReport">See Results</a>
+	<a href="/studentsExamAttendenceReport/examReport">See Results</a>
 	
 </body>
 

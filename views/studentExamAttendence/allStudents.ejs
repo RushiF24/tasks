@@ -118,8 +118,7 @@
             <%if (forw == 'search') {%>
                 <%- include('./search.ejs'); %> 
                 <%}%>
-
-                <%if (forw != 'delimitedSearch') {%>
+                <%if((forw != 'delimitedSearch') && (forw != 'candidates') ) {%>
                 <div class="pagination">
 
                     <%- include('./pagination.ejs'); %>
@@ -156,6 +155,12 @@
                                             <%=fieldValues[i]%>
                                         </td>
                                         <% } %>
+                                        <%if (forw == 'candidates') {%>
+                                            <td>
+                                                <a href="/jobapplicationform/candidate/<%=fieldValues[0]%>">upadte candidate</a>
+                                                <%=fieldValues[i]%>
+                                            </td>
+                                            <% } %>
 
                                 </tr>
                                 <% } %>
