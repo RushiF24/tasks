@@ -1,15 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const localStorage = require("localStorage")
+const controller = require('../../controllers/logout/logout')
 
-router.get('/',(req, res) => {
-  
-    try {
-       localStorage.clear()
-       res.redirect('/login/loginform')
-    } catch (error) {
-        return res.end("try again to logout")
-    }
-})
+router.get('/',controller.logout)
 
 module.exports = router

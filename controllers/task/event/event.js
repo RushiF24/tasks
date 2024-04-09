@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const db = require('../../../db')
-const controller = require("../../../controllers/task/event/event")
+
 
 // router.get('/', (req, res) => {
 //     try {
@@ -13,6 +13,14 @@ const controller = require("../../../controllers/task/event/event")
 //     }
 // })
 
-router.get('/', controller.event)
+const event = (req, res) => {
+    try {
+        res.render('event/event');
+    }
+    catch (error) {
+        res.write("Try again")
+        return res.end()
+    }
+}
 
-module.exports = router
+module.exports = {event}

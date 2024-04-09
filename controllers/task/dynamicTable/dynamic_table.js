@@ -1,15 +1,22 @@
 const express = require('express')
 const router = express.Router()
 const {authMiddleware,verifyLoginMiddleware}=require('../../../midlleware/auth')
-const controller = require("../../../controllers/task/html2/html2")
+const db = require('../../../db')
 
 // router.get('/', authMiddleware,(req, res) => {
 //     try {
-//         res.render('html2/index')
+//         res.render('dynamicTable/dynamicTable')
 //     } catch (error) {
 //         return res.end("try again to welcome")
 //     }
 // }) 
+const dynamic_table =  (req, res) => {
+    try {
+        res.render('dynamicTable/dynamicTable')
+    } catch (error) {
+        return res.end("try again to welcome")
+    }
+}
 
-router.get('/', authMiddleware, controller.html2)
-module.exports = router
+
+module.exports = {dynamic_table}

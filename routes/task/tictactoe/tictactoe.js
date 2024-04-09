@@ -1,15 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const {authMiddleware,verifyLoginMiddleware}=require('../../../midlleware/auth')
-const db = require('../../../db')
+const controller = require("../../../controllers/task/tictactoe/tictactoe")
 
-router.get('/', authMiddleware,(req, res) => {
-    try {
-        res.render('tictactoe/TicTacToe')
-    } catch (error) {
-        return res.end("try again to welcome")
-    }
-}) 
+router.get('/', authMiddleware,controller.tictactoe) 
 
 
 module.exports = router

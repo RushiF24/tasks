@@ -1,15 +1,8 @@
 const express = require('express')
 const router = express.Router()
 const {authMiddleware,verifyLoginMiddleware}=require('../../../midlleware/auth')
-const db = require('../../../db')
-
-router.get('/', authMiddleware,(req, res) => {
-    try {
-        res.render('kukuCube/kukucube')
-    } catch (error) {
-        return res.end("try again to welcome")
-    }
-}) 
+const controller = require("../../../controllers/task/kukucube/kukucube")
+router.get('/', authMiddleware,controller.kukucube) 
 
 
 module.exports = router
